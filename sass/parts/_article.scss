@@ -185,3 +185,26 @@ article{
 	}
 	@include border-shadow();
 }
+
+.sharing{
+	padding: 40px 0px;
+}
+
+.sns-fb{
+	margin: 3px;
+	float: left;
+	vertical-align: top;
+}
+
+.sns-tw{
+	width: 90px;
+	padding: 8px 0px 0px 0px;
+	float: left;
+	vertical-align: top;
+}
+
+.sns-hb{
+	padding: 8px 8px 0px 0px;
+	float: left;
+	vertical-align: top;
+}
