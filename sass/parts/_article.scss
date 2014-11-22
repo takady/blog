@@ -1,5 +1,6 @@
 article{
 	padding: 0 0 60px 0;
+	margin-top: 25px;
 	position: relative;
 	@media screen and (max-width: 620px){
 		padding-bottom: 15px;
@@ -8,10 +9,9 @@ article{
 		padding: 15px 0;
 	}
 	h2.title{
-		font-size: 32px;
+		font-size: 30px;
 		font-weight: 300;
 		line-height: 1;
-		margin-bottom: 20px;
 		margin-left:0px;
 		text-align:left;
 		border-bottom: 0px;
@@ -23,7 +23,7 @@ article{
 		border-bottom: 0px;
 		}
 		border-bottom: 1px solid $color-gray04;
-		padding-bottom: 20px;
+		padding-bottom: 10px;
 		@media screen and (max-width: 620px) {
 		font-size: 18px;
 		}
@@ -33,6 +33,7 @@ article{
 	.entry-content{
 		line-height: 1.5;
 		text-align: left;
+		margin-top: 40px;
 		
 				a {
  			text-decoration:none;

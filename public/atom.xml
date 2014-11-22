@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-11-21T19:22:20+09:00</updated>
+  <updated>2014-11-22T13:07:00+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -18,18 +18,16 @@
     <link href="http://takady.github.io/blog/2014/11/21/rails-logger-broadcast/"/>
     <updated>2014-11-21T18:57:07+09:00</updated>
     <id>http://takady.github.io/blog/2014/11/21/rails-logger-broadcast</id>
-    <content type="html"><![CDATA[<h1>前提</h1>
+    <content type="html"><![CDATA[<p>railsアプリケーションで、error以上のレベルのログだけ、２箇所にログを出力したいと思った。</p>
+
+<h1>前提</h1>
 
 <p>ruby 2.1.2<br/>
 rails 4.1.4</p>
 
-<h1>何？</h1>
-
-<p>railsアプリケーションで、error以上のレベルのログだけ、２箇所にログを出力したいと思った。</p>
-
 <h1>方法</h1>
 
-<p>まず、複数の出力先にロギングするには、ActiveSupport::Logger.#broadcastというメソッドが使える。<br/>
+<p>まず、複数の出力先にロギングするには、<a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/logger.rb#L10-L42">ActiveSupport::Logger.#broadcast</a>というメソッドが使える。<br/>
 config/application.rbのMyapp::Applicationクラス内に下記のように書いてみた。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -38,7 +36,7 @@ config/application.rbのMyapp::Applicationクラス内に下記のように書�
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">logger</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">paths</span><span class="o">[</span><span class="s2">&quot;log&quot;</span><span class="o">].</span><span class="n">first</span><span class="p">)</span>
-</span><span class='line'><span class="n">error_logger</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;log/alert.log&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">error_logger</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;log/error.log&quot;</span><span class="p">)</span>
 </span><span class='line'><span class="n">error_logger</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="no">Logger</span><span class="o">::</span><span class="no">ERROR</span>
 </span><span class='line'><span class="n">logger</span><span class="o">.</span><span class="n">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">error_logger</span><span class="p">)</span>
 </span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
@@ -46,12 +44,11 @@ config/application.rbのMyapp::Applicationクラス内に下記のように書�
 
 
 <p>これで、複数箇所にログが出力されるようにはなった。<br/>
-しかし、今回やりたかったのは、<strong>&ldquo;errorの時だけ&rdquo;</strong>、２箇所にロギングしたいというもので、<br/>
-上記のようにconfig/application.rbでextendした場合、error_loggerのlevelをERRORにセットしていても、Rails.loggerのlevelと同じlevelでのloggingになってしまう。<br/>
+しかし、今回やりたかったのは、<strong>ERROR以上の時だけ</strong>２箇所にロギングしたいというもので、上記のようにconfig/application.rbでextendした場合、error_loggerのlevelをERRORにセットしていても、Rails.loggerのlevelと同じlevelでのloggingになってしまう。<br/>
 全く同じエラーログを複数箇所に吐かせたいというだけであれば、上記の方法で良いと思う。(その際、上記の<code>error_logger.level = Logger::ERROR</code>は意味が無いので消した方が良い)</p>
 
-<p>error_logger.levelの指定が効くようにするには、Rails.applicationが生成された後で、error_loggerをRails.loggerにextendすると良い。
-config.ruのrun Rails.applicationの後に下記のように書く。</p>
+<p>error_logger.levelの指定が効くようにするには、<code>run Rails.application</code>よりも後で、error_loggerをRails.loggerにextendすると良い。<br/>
+config.ruに下記を追記する。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -60,19 +57,20 @@ config.ruのrun Rails.applicationの後に下記のように書く。</p>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">run</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">error_logger</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;log/alert.log&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">error_logger</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;log/error.log&quot;</span><span class="p">)</span>
 </span><span class='line'><span class="n">error_logger</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="no">Logger</span><span class="o">::</span><span class="no">ERROR</span>
 </span><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">error_logger</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>これで、log/alert.logへは、ERRORレベル以上のログだけが出力されるようになった。<br/>
+<p>これで、log/error.logへは、ERRORレベル以上のログだけが出力されるようになった。<br/>
 もちろん、log/development.logには、これまでどおりDEBUGレベルまで含めた全てのlogが出ている。</p>
 
 <h1>参考</h1>
 
 <p><a href="http://blog.livedoor.jp/sonots/archives/38927788.html">[Ruby] 例えば、Rails の標準ログを止める - sonots:blog</a><br/>
-<a href="http://railsdoc.eiel.info/active_support/logger/">RailsDoc - ActiveSupport::Logger</a></p>
+<a href="http://railsdoc.eiel.info/active_support/logger/">RailsDoc - ActiveSupport::Logger</a><br/>
+<a href="http://mitsu877.hatenablog.com/entry/2014/11/15/193547">【Rails】バッチの実行ログを専用のログファイルと標準出力の両方に出す - おどるダメ人間</a></p>
 ]]></content>
   </entry>
   
