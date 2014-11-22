@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby | Yuichi Takada]]></title>
+  <link href="http://takady.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://takady.github.io/"/>
+  <updated>2014-11-22T13:29:10+09:00</updated>
+  <id>http://takady.github.io/</id>
+  <author>
+    <name><![CDATA[Yuichi Takada]]></name>
+    <email><![CDATA[takadyuichi@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[rubyのloggerでlogのヘッダを出力しない]]></title>
+    <link href="http://takady.github.io/blog/2014/11/22/disable-ruby-log-header/"/>
+    <updated>2014-11-22T13:11:18+09:00</updated>
+    <id>http://takady.github.io/blog/2014/11/22/disable-ruby-log-header</id>
+    <content type="html"><![CDATA[<p>rubyのLoggerを使っていると、Logger.newした際に生成されるlogファイルには、デフォルトで下記のようなヘッダが出力される。<br/>
+<code># Logfile created on 2014-11-22 13:15:26 +0900 by logger.rb/44203</code></p>
+
+<p>これを出したくない場合は、下記のようにヘッダをつける<a href="https://github.com/ruby/ruby/blob/trunk/lib/logger.rb#L649-L653">Logger::LogDevice#add_log_header</a>メソッドを空にoverrideすると良い。</p>
+
+<pre><code class="ruby">class Logger::LogDevice
+  def add_log_header(file)
+  end
+end
+
+log = Logger.new('info.log')
+</code></pre>
+
+<h1>参考</h1>
+
+<p><a href="http://stackoverflow.com/questions/4096336/can-i-disable-the-log-header-for-ruby-logger">Can I disable the log header for ruby logger? - Stack Overflow</a></p>
+]]></content>
+  </entry>
+  
+</feed>

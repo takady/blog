@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-11-22T13:07:00+09:00</updated>
+  <updated>2014-11-22T13:29:10+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rubyのloggerでlogのヘッダを出力しない]]></title>
+    <link href="http://takady.github.io/blog/2014/11/22/disable-ruby-log-header/"/>
+    <updated>2014-11-22T13:11:18+09:00</updated>
+    <id>http://takady.github.io/blog/2014/11/22/disable-ruby-log-header</id>
+    <content type="html"><![CDATA[<p>rubyのLoggerを使っていると、Logger.newした際に生成されるlogファイルには、デフォルトで下記のようなヘッダが出力される。<br/>
+<code># Logfile created on 2014-11-22 13:15:26 +0900 by logger.rb/44203</code></p>
+
+<p>これを出したくない場合は、下記のようにヘッダをつける<a href="https://github.com/ruby/ruby/blob/trunk/lib/logger.rb#L649-L653">Logger::LogDevice#add_log_header</a>メソッドを空にoverrideすると良い。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Logger</span><span class="o">::</span><span class="no">LogDevice</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_log_header</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;info.log&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>参考</h1>
+
+<p><a href="http://stackoverflow.com/questions/4096336/can-i-disable-the-log-header-for-ruby-logger">Can I disable the log header for ruby logger? - Stack Overflow</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[railsで、複数の出力先にlogを出力する]]></title>
