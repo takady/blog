@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-03T23:18:14+09:00</updated>
+  <updated>2014-12-03T23:25:02+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -24,7 +24,7 @@ twitterとかblogのようなフローの情報ではなく、スタックする
 
 <h1>階層を深くしすぎない</h1>
 
-<p>wikiはサイト全体をツリー構造に構築するものだが、だいたい深くても３階層までにしときたい。<br/>
+<p>wikiはサイト全体をツリー構造に構築するものだが、だいたい３~4階層までにしときたい。<br/>
 深すぎると辿っていくような遷移をする時に面倒だから。<br/>
 wiki全体の階層構造としては、大体下記くらいの深さ&amp;粒度が良い気がしてる。</p>
 
