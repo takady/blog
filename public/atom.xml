@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-02T19:02:09+09:00</updated>
+  <updated>2014-12-03T21:06:41+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[development環境だけbefore_actionをスキップする]]></title>
+    <link href="http://takady.github.io/blog/2014/12/03/skip-before-action-on-development-env/"/>
+    <updated>2014-12-03T21:02:25+09:00</updated>
+    <id>http://takady.github.io/blog/2014/12/03/skip-before-action-on-development-env</id>
+    <content type="html"><![CDATA[<p>最近railsでapi開発をしていて、もちろんテストコード書いてるんだけど、<br/>
+たまにブラウザからGETリクエスト送ってサクッとjsonの中を見たいって時に、認証があって見れない。。。ってパターンがかなりある。<br/>
+開発環境では、認証しなくていいやと思った。<br/>
+下記のようにすることで、before_actionをdevelopment環境ではスキップさせられる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">before_action</span> <span class="ss">:authenticate</span> <span class="k">unless</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">authenticate</span>
+</span><span class='line'>    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>参考</h1>
+
+<p><a href="http://memo.yomukaku.net/entries/127">Rails.env.development?でdevelopment環境かどうかを判定できる - memo.yomukaku.net</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[railsでmysqlのbooleanなカラムをエイリアスで扱う時の注意事]]></title>
