@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-03T21:06:41+09:00</updated>
+  <updated>2014-12-03T21:48:23+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,85 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[チームで情報をスタックするためのwikiの運用で気をつけていること]]></title>
+    <link href="http://takady.github.io/blog/2014/12/03/documentation/"/>
+    <updated>2014-12-03T21:14:11+09:00</updated>
+    <id>http://takady.github.io/blog/2014/12/03/documentation</id>
+    <content type="html"><![CDATA[<p>僕のいるチームでは<a href="https://www.atlassian.com/ja/software/confluence">Confluence</a>を使っているが、一般的なwikiのようなものであれば適用できる話だと思う。<br/>
+ちなみにこれは個人的に気をつけていることであって、他のメンバーに強制してるとかはない。</p>
+
+<h1>階層を深くしすぎない</h1>
+
+<p>wikiはサイト全体をツリー構造に構築するものだが、だいたい深くても３階層までにしときたい。<br/>
+深すぎると辿っていくような遷移をする時に面倒だから。</p>
+
+<h1>ページを細かく分けて増やし過ぎない</h1>
+
+<p>何か書こうと思った時には、新しいページを作りたくなるんだが、分かれすぎてると見る人が大変になる。<br/>
+なるべく同じページ内で章を分けたりして、ひとつの事柄に関することはひとつのページにまとめたい。<br/>
+ドキュメントの場合は、一つのページが縦に長くなっていても、そんなに気にならないと個人的には感じている。<br/>
+wiki全体の階層構造としては、大体下記くらいの深さ&amp;粒度が良い気がしてる。</p>
+
+<pre><code>-- Installation
+   |-- moduleA
+   |-- moduleB
+   |-- :
+   `-- :
+-- FYI
+   |-- rails tips
+   |-- git tips
+   |-- LGTM images
+   |-- :
+   `-- :
+-- Dev&amp;Ops
+   |-- CI
+   |-- source code management policy
+   |-- trouble shoot
+   |-- :
+   `-- :
+-- Minutes
+   |-- daily scrum
+   |   |-- 2014-01
+   |   |-- 2014-02
+   |   |-- 2014-03
+   |   |-- :
+   |   `-- :
+   |-- :
+   `-- :
+</code></pre>
+
+<h1>別のページをincludeはなるべくしない</h1>
+
+<p>なんか、includeしてるorginのページを編集するのがすごく面倒だから、includeはなるべく使わないようにしている。<br/>
+たいていはリンク貼っておくだけで全然問題ない。</p>
+
+<h1>検索可能にする</h1>
+
+<p>当たり前だけど、文字なら文字として書く。<br/>
+confluenceには&#8221;この階層以下を検索&#8221;とかって機能があって、結構それ使って検索することがある。<br/>
+画像貼っただけのページとかだと、キーワード検索で引っかからなくてつらかったりする。</p>
+
+<h1>英語と日本語の両方で書く</h1>
+
+<p>日本人もいるし外国人もいるので、下記のように英語と日本語に両方で書いてる。</p>
+
+<pre><code>We use rspec version3.(私たちはrspec3を使います。)
+.(これはペンです。)
+</code></pre>
+
+<h1>メンテする</h1>
+
+<p>これが一番難しくて今でも困ってるんだが、ドキュメントは時間が経つと腐っていくので、適宜内容は更新していかないといけない。<br/>
+APIドキュメントとかならコードから機械的に生成するとかもやったりしているが、<br/>
+機械的に生成出来ない類のドキュメントもあるし、これはもう定期的にチェックしていくしかないかなーという気がしてる。</p>
+
+<h1>まとめ</h1>
+
+<p>いろいろ書いたけど結局のところ、メンバーが見やすく探しやすく書きやすい状態を保っときたいという話でした。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[development環境だけbefore_actionをスキップする]]></title>
