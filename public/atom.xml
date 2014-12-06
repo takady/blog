@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-03T23:25:02+09:00</updated>
+  <updated>2014-12-06T17:30:19+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rubyのloggerをnewした後にログファイルを削除するとどうなるのか]]></title>
+    <link href="http://takady.github.io/blog/2014/12/06/file-safe-logger/"/>
+    <updated>2014-12-06T16:46:52+09:00</updated>
+    <id>http://takady.github.io/blog/2014/12/06/file-safe-logger</id>
+    <content type="html"><![CDATA[<p>rubyには標準添付ライブラリにloggerクラスがある。<br/>
+そのloggerクラス、newした後に出力先のログファイルが削除された時の挙動について調べた。<br/>
+そして、<a href="https://github.com/takady/file_safe_logger">file_safe_logger</a>というgemを作った。</p>
+
+<h1>検証</h1>
+
+<p>下記のようにして、<code>Logger.new</code>と<code>logger.info</code>の間でファイルを削除してみる</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;logger&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">logfile</span> <span class="o">=</span> <span class="s1">&#39;test.log&#39;</span>
+</span><span class='line'><span class="n">logger</span> <span class="o">=</span> <span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">logfile</span><span class="p">)</span>
+</span><span class='line'><span class="no">FileUtils</span><span class="o">.</span><span class="n">rm</span><span class="p">(</span><span class="n">logfile</span><span class="p">)</span>
+</span><span class='line'><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;this is test&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これは、結果としてはエラーにはならず正常終了するが、test.logというファイルはカレントディレクトリに存在せず、もちろん<code>this is test</code>というlogも残っていない。</p>
+
+<h1>FileSafeLogger</h1>
+
+<p>ファイルが削除されるとlogging出来ないというのが困る時がある。<br/>
+なので、<a href="https://github.com/takady/file_safe_logger">file_safe_logger</a>というgemを作った。<br/>
+やってることはいたって単純で、<a href="https://github.com/ruby/ruby/blob/trunk/lib/logger.rb#L593-L612">Logger::LogDevice.#write</a>メソッドをoverrideして、ファイルが存在しない場合は作成しているだけである。<br/>
+<a href="https://github.com/takady/file_safe_logger">file_safe_logger</a>を使って、先ほどのlogging処理と同じ処理をやってみる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;file_safe_logger&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">logfile</span> <span class="o">=</span> <span class="s1">&#39;test.log&#39;</span>
+</span><span class='line'><span class="n">logger</span> <span class="o">=</span> <span class="no">FileSafeLogger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">logfile</span><span class="p">)</span>
+</span><span class='line'><span class="no">FileUtils</span><span class="o">.</span><span class="n">rm</span><span class="p">(</span><span class="n">logfile</span><span class="p">)</span>
+</span><span class='line'><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;this is test&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これの実行後、カレントディレクトリには<code>test.log</code>が存在し、下記のようにlogが書き出されている。</p>
+
+<pre><code>$ cat test.log
+# Logfile created on 2014-12-06 17:07:53 +0900 by logger.rb/44203
+I, [2014-12-06T17:07:53.884806 #1547]  INFO -- : this is test
+</code></pre>
+
+<h1>参考</h1>
+
+<p><a href="https://github.com/sonots/process_safe_logger">sonots/process_safe_logger</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[チームで情報をスタックするためのwikiの運用で気をつけていること]]></title>
