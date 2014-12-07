@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-06T17:30:19+09:00</updated>
+  <updated>2014-12-07T18:03:44+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[rubyのloggerをnewした後にログファイルを削除するとどうなるのか]]></title>
-    <link href="http://takady.github.io/blog/2014/12/06/file-safe-logger/"/>
-    <updated>2014-12-06T16:46:52+09:00</updated>
-    <id>http://takady.github.io/blog/2014/12/06/file-safe-logger</id>
+    <link href="http://takady.github.io/blog/2014/12/07/file-safe-logger/"/>
+    <updated>2014-12-07T18:01:52+09:00</updated>
+    <id>http://takady.github.io/blog/2014/12/07/file-safe-logger</id>
     <content type="html"><![CDATA[<p>rubyには標準添付ライブラリにloggerクラスがある。<br/>
 そのloggerクラス、newした後に出力先のログファイルが削除された時の挙動について調べた。<br/>
 そして、<a href="https://github.com/takady/file_safe_logger">file_safe_logger</a>というgemを作った。</p>

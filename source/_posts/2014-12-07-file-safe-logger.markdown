@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "rubyのloggerをnewした後にログファイルを削除するとどうなるのか"
-date: 2014-12-06 16:46:52 +0900
+date: 2014-12-07 18:01:52 +0900
 comments: true
 categories: ruby
 ---
