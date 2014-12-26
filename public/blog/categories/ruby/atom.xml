@@ -18,7 +18,9 @@
     <link href="http://takady.github.io/blog/2014/12/07/file-safe-logger/"/>
     <updated>2014-12-07T18:01:52+09:00</updated>
     <id>http://takady.github.io/blog/2014/12/07/file-safe-logger</id>
-    <content type="html"><![CDATA[<p>rubyには標準添付ライブラリにloggerクラスがある。<br/>
+    <content type="html"><![CDATA[<p><strong>この投稿は<a href="http://qiita.com/advent-calendar/2014/ruby">Ruby Advent Calendar 2014</a>の7日目の記事です。</strong></p>
+
+<p>rubyには標準添付ライブラリにloggerクラスがある。<br/>
 そのloggerクラス、newした後に出力先のログファイルが削除された時の挙動について調べた。<br/>
 そして、<a href="https://github.com/takady/file_safe_logger">file_safe_logger</a>というgemを作った。</p>
 

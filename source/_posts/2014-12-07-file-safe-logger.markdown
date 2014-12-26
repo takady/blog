@@ -5,6 +5,8 @@ date: 2014-12-07 18:01:52 +0900
 comments: true
 categories: ruby
 ---
+__この投稿は[Ruby Advent Calendar 2014](http://qiita.com/advent-calendar/2014/ruby)の7日目の記事です。__
+
 rubyには標準添付ライブラリにloggerクラスがある。  
 そのloggerクラス、newした後に出力先のログファイルが削除された時の挙動について調べた。  
 そして、[file_safe_logger](https://github.com/takady/file_safe_logger)というgemを作った。  
