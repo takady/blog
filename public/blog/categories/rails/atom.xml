@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-07T18:03:44+09:00</updated>
+  <updated>2014-12-26T17:40:29+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[DBを使わないrailsアプリケーションの初期設定]]></title>
+    <link href="http://takady.github.io/blog/2014/12/26/rails-app-without-db/"/>
+    <updated>2014-12-26T17:28:02+09:00</updated>
+    <id>http://takady.github.io/blog/2014/12/26/rails-app-without-db</id>
+    <content type="html"><![CDATA[<p>外部のweb apiをマッシュアップするだけのrailsアプリケーションを作りたい時に、DBを使わない、つまりactive_recordを使わない事がある。<br/>
+その場合は、config/以下のファイルから下記のactive_record用の記述を削除する。</p>
+
+<h1>config/application.rb</h1>
+
+<pre><code>-  require "active_record/railtie"
+
+-  # Do not swallow errors in after_commit/after_rollback callbacks.
+-  config.active_record.raise_in_transactional_callbacks = true
+</code></pre>
+
+<h1>config/environments/development.rb</h1>
+
+<pre><code>-  # Raise an error on page load if there are pending migrations.
+-  config.active_record.migration_error = :page_load
+</code></pre>
+
+<h1>config/environments/production.rb</h1>
+
+<pre><code>-  # Do not dump schema after migrations.
+-  config.active_record.dump_schema_after_migration = false
+</code></pre>
+
+<h1>config/database.yml</h1>
+
+<p>削除する</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[development環境だけbefore_actionをスキップする]]></title>
