@@ -55,6 +55,7 @@ facebook graph apiの場合、このままだとAccess Tokenの有効期限が�
 
 # まとめ
 OAuth2、Access Token取得後はそれだけでAPIとやりとりできるからシンプルで良いけど、Access Tokenを取得するまでがめんどくさい  
+ブラウザ無しでtoken発行やりたかった([Javascript SDK](https://github.com/nov/fb_graph/wiki/Authentication#javascript-sdk)使ったらできるのか?)  
 Facebookでは上記フローだが、twitterとかgithubとか他のサービスもまったく同じなわけじゃないので、他も触ってみたい  
 
 # 参考

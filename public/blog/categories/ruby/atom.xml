@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-29T19:13:02+09:00</updated>
+  <updated>2014-12-29T19:22:38+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -81,6 +81,7 @@ Settings > Advanced > Security > Valid OAuth redirect URIs</p>
 <h1>まとめ</h1>
 
 <p>OAuth2、Access Token取得後はそれだけでAPIとやりとりできるからシンプルで良いけど、Access Tokenを取得するまでがめんどくさい<br/>
+ブラウザ無しでtoken発行やりたかった(<a href="https://github.com/nov/fb_graph/wiki/Authentication#javascript-sdk">Javascript SDK</a>使ったらできるのか?)<br/>
 Facebookでは上記フローだが、twitterとかgithubとか他のサービスもまったく同じなわけじゃないので、他も触ってみたい</p>
 
 <h1>参考</h1>
