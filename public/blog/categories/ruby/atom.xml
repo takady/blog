@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-26T17:48:44+09:00</updated>
+  <updated>2014-12-29T18:56:26+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[facebook graph apiのaccess tokenを取得するまでのフローを追ってみた]]></title>
+    <link href="http://takady.github.io/blog/2014/12/29/facebook-graph-api-oauth-flow/"/>
+    <updated>2014-12-29T17:45:20+09:00</updated>
+    <id>http://takady.github.io/blog/2014/12/29/facebook-graph-api-oauth-flow</id>
+    <content type="html"><![CDATA[<p>OAuth2について、わかってたつもりでわかってないので、<br/>
+<a href="https://github.com/nov/fb_graph">nov/fb_graph</a>を通して、facebook graph apiでaccess_tokenを発行するところまでを見てみた</p>
+
+<h1>TL;DR</h1>
+
+<p>この面倒なtoken生成作業は、<a href="https://developers.facebook.com/">https://developers.facebook.com/</a>のTools > Graph API Explorerで、<br/>
+Get Access Tokenとボタンを押すと生成できるので、すぐtokenを生成したいのなら、下記を読まずにそこから生成するのが楽で良い</p>
+
+<h1>1.まずfacebookにappを登録</h1>
+
+<p><a href="https://developers.facebook.com/">https://developers.facebook.com/</a>のApps > Add a New Appで作成できる<br/>
+この時、リダイレクト先URLも下記から設定しておくこと<br/>
+Settings > Advanced > Security > Valid OAuth redirect URIs</p>
+
+<h1>2.App IDとApp Secretを確認</h1>
+
+<p>先ほど作成したAppのDashboardに行って確認できる</p>
+
+<h1>3.client_idとredirect_url付きのGETリクエストを送信</h1>
+
+<p>下記のようにリクエストする</p>
+
+<pre><code>GET https://graph.facebook.com/oauth/authorize?client_id=&lt;Your App ID&gt;&amp;redirect_uri=&lt;Your Redirect URL&gt;
+</code></pre>
+
+<h1>4.リダイレクトされたurlのAuthorization Codeパラメータの値を確認</h1>
+
+<p>下記のような感じである</p>
+
+<pre><code>http://example.com?code=&lt;Your Authorization Code&gt;
+</code></pre>
+
+<h1>5.graph apiへPOSTリクエストを送信</h1>
+
+<p>取得したAuthorization Codeを含め、パラメータとして下記をセットしてPOSTでリクエストする</p>
+
+<pre><code>POST https://graph.facebook.com/oauth/access_token
+
+ grant_type: authorization_code
+ code: &lt;Your Authorization Code&gt;
+ redirect_uri: &lt;Your Redirect URL&gt;
+ client_id: &lt;Your App ID&gt;
+ client_secret: &lt;Your App Secret&gt;
+</code></pre>
+
+<h1>6.レスポンスのbodyにあるaccess_tokenを確認</h1>
+
+<p>レスポンスのbodyは下記のようになっている</p>
+
+<pre><code>access_token=&lt;Your Access Token&gt;  
+</code></pre>
+
+<h1>7.tokenの有効期限を伸ばす</h1>
+
+<p>facebook graph apiの場合、このままだとaccess_tokenの有効期限が短すぎる<br/>
+下記のGETリクエストを送ることで、有効期限を60日間に伸ばす事ができる</p>
+
+<pre><code>GET https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&amp;client_id=&lt;Your App ID&gt;&amp;client_secret=&lt;Your App Secret&gt;&amp;fb_exchange_token=&lt;Your Access Token&gt;  
+</code></pre>
+
+<p>この生成されたaccess_tokenを使って、facebook graph apiを利用する事ができる</p>
+
+<h1>まとめ</h1>
+
+<p>access tokenを取得するまでがめんどくさい<br/>
+ブラウザ無しでtoken発行やりたいけど出来ない<br/>
+Facebookでは上記フローだが、twitterとかgithubとか他のサービスもまったく同じなわけじゃないので、他も触ってみたい</p>
+
+<h1>参考</h1>
+
+<p><a href="http://stackoverflow.com/questions/21978728/obtaining-a-facebook-auth-token-for-a-command-line-desktop-application">ruby - Obtaining a Facebook auth token for a command-line (desktop) application - Stack Overflow</a><br/>
+<a href="http://rebuild.fm/43/">Rebuild: 43: Kent is More Professional (Kenn Ejima)</a><br/>
+<a href="https://github.com/nov/fb_graph/wiki">Home · nov/fb_graph Wiki</a><br/>
+<a href="http://morizyun.github.io/blog/facebook-event-api-ruby-fb_graph/">公開中のFacebook EventをGraph APIから取得する - 酒と泪とRubyとRailsと</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rubyのloggerをnewした後にログファイルを削除するとどうなるのか]]></title>
