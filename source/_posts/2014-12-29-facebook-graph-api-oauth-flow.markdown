@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "facebook graph apiのaccess tokenを取得するまでのフローを追ってみた"
+title: "facebook graph apiのAccess Tokenを取得するまで"
 date: 2014-12-29 17:45:20 +0900
 comments: true
 categories: ruby
 ---
 OAuth2について、わかってたつもりでわかってないので、  
-[nov/fb_graph](https://github.com/nov/fb_graph)を通して、facebook graph apiでaccess_tokenを発行するところまでを見てみた  
+[nov/fb_graph](https://github.com/nov/fb_graph)を通して、facebook graph apiでAccess Tokenを発行するところまでを追ってみた  
 
 # TL;DR
 この面倒なtoken生成作業は、[https://developers.facebook.com/](https://developers.facebook.com/)のTools > Graph API Explorerで、  
@@ -30,7 +30,7 @@ Settings > Advanced > Security > Valid OAuth redirect URIs
 
     http://example.com?code=<Your Authorization Code>
 
-# 5.graph apiへPOSTリクエストを送信
+# 5.POSTリクエストを送信してAccess Tokenを取得
 取得したAuthorization Codeを含め、パラメータとして下記をセットしてPOSTでリクエストする  
 
     POST https://graph.facebook.com/oauth/access_token
@@ -41,24 +41,21 @@ Settings > Advanced > Security > Valid OAuth redirect URIs
      client_id: <Your App ID>
      client_secret: <Your App Secret>
 
-# 6.レスポンスのbodyにあるaccess_tokenを確認
 レスポンスのbodyは下記のようになっている  
 
     access_token=<Your Access Token>  
 
-# 7.tokenの有効期限を伸ばす
-facebook graph apiの場合、このままだとaccess_tokenの有効期限が短すぎる  
+この生成されたaccess_tokenを使って、facebook graph apiを利用する事ができる  
+
+# 6.Access Tokenの有効期限を伸ばす
+facebook graph apiの場合、このままだとAccess Tokenの有効期限が短すぎる  
 下記のGETリクエストを送ることで、有効期限を60日間に伸ばす事ができる  
 
     GET https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=<Your App ID>&client_secret=<Your App Secret>&fb_exchange_token=<Your Access Token>  
 
-この生成されたaccess_tokenを使って、facebook graph apiを利用する事ができる  
-
 # まとめ
-access tokenを取得するまでがめんどくさい  
-ブラウザ無しでtoken発行やりたいけど出来ない  
+OAuth2、Access Token取得後はそれだけでAPIとやりとりできるからシンプルで良いけど、Access Tokenを取得するまでがめんどくさい  
 Facebookでは上記フローだが、twitterとかgithubとか他のサービスもまったく同じなわけじゃないので、他も触ってみたい  
-
 
 # 参考
 [ruby - Obtaining a Facebook auth token for a command-line (desktop) application - Stack Overflow](http://stackoverflow.com/questions/21978728/obtaining-a-facebook-auth-token-for-a-command-line-desktop-application)  

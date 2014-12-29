@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-29T18:56:26+09:00</updated>
+  <updated>2014-12-29T19:13:02+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -14,12 +14,12 @@
 
   
   <entry>
-    <title type="html"><![CDATA[facebook graph apiのaccess tokenを取得するまでのフローを追ってみた]]></title>
+    <title type="html"><![CDATA[facebook graph apiのAccess Tokenを取得するまで]]></title>
     <link href="http://takady.github.io/blog/2014/12/29/facebook-graph-api-oauth-flow/"/>
     <updated>2014-12-29T17:45:20+09:00</updated>
     <id>http://takady.github.io/blog/2014/12/29/facebook-graph-api-oauth-flow</id>
     <content type="html"><![CDATA[<p>OAuth2について、わかってたつもりでわかってないので、<br/>
-<a href="https://github.com/nov/fb_graph">nov/fb_graph</a>を通して、facebook graph apiでaccess_tokenを発行するところまでを見てみた</p>
+<a href="https://github.com/nov/fb_graph">nov/fb_graph</a>を通して、facebook graph apiでAccess Tokenを発行するところまでを追ってみた</p>
 
 <h1>TL;DR</h1>
 
@@ -50,7 +50,7 @@ Settings > Advanced > Security > Valid OAuth redirect URIs</p>
 <pre><code>http://example.com?code=&lt;Your Authorization Code&gt;
 </code></pre>
 
-<h1>5.graph apiへPOSTリクエストを送信</h1>
+<h1>5.POSTリクエストを送信してAccess Tokenを取得</h1>
 
 <p>取得したAuthorization Codeを含め、パラメータとして下記をセットしてPOSTでリクエストする</p>
 
@@ -63,27 +63,24 @@ Settings > Advanced > Security > Valid OAuth redirect URIs</p>
  client_secret: &lt;Your App Secret&gt;
 </code></pre>
 
-<h1>6.レスポンスのbodyにあるaccess_tokenを確認</h1>
-
 <p>レスポンスのbodyは下記のようになっている</p>
 
 <pre><code>access_token=&lt;Your Access Token&gt;  
 </code></pre>
 
-<h1>7.tokenの有効期限を伸ばす</h1>
+<p>この生成されたaccess_tokenを使って、facebook graph apiを利用する事ができる</p>
 
-<p>facebook graph apiの場合、このままだとaccess_tokenの有効期限が短すぎる<br/>
+<h1>6.Access Tokenの有効期限を伸ばす</h1>
+
+<p>facebook graph apiの場合、このままだとAccess Tokenの有効期限が短すぎる<br/>
 下記のGETリクエストを送ることで、有効期限を60日間に伸ばす事ができる</p>
 
 <pre><code>GET https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&amp;client_id=&lt;Your App ID&gt;&amp;client_secret=&lt;Your App Secret&gt;&amp;fb_exchange_token=&lt;Your Access Token&gt;  
 </code></pre>
 
-<p>この生成されたaccess_tokenを使って、facebook graph apiを利用する事ができる</p>
-
 <h1>まとめ</h1>
 
-<p>access tokenを取得するまでがめんどくさい<br/>
-ブラウザ無しでtoken発行やりたいけど出来ない<br/>
+<p>OAuth2、Access Token取得後はそれだけでAPIとやりとりできるからシンプルで良いけど、Access Tokenを取得するまでがめんどくさい<br/>
 Facebookでは上記フローだが、twitterとかgithubとか他のサービスもまったく同じなわけじゃないので、他も触ってみたい</p>
 
 <h1>参考</h1>

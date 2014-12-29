@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>facebook graph apiのaccess tokenを取得するまでのフローを追ってみた | Yuichi Takada</title>
+	<title>facebook graph apiのAccess Tokenを取得するまで | Yuichi Takada</title>
 
 	<meta name="author" content="Yuichi Takada"> 
 	
@@ -47,9 +47,9 @@
 </div>
 
 
-	<h2 class="title">Facebook Graph Apiのaccess Tokenを取得するまでのフローを追ってみた</h2>
+	<h2 class="title">Facebook Graph apiのAccess Tokenを取得するまで</h2>
 	<div class="entry-content"><p>OAuth2について、わかってたつもりでわかってないので、<br/>
-<a href="https://github.com/nov/fb_graph">nov/fb_graph</a>を通して、facebook graph apiでaccess_tokenを発行するところまでを見てみた</p>
+<a href="https://github.com/nov/fb_graph">nov/fb_graph</a>を通して、facebook graph apiでAccess Tokenを発行するところまでを追ってみた</p>
 
 <h1>TL;DR</h1>
 
@@ -80,7 +80,7 @@ Settings > Advanced > Security > Valid OAuth redirect URIs</p>
 <pre><code>http://example.com?code=&lt;Your Authorization Code&gt;
 </code></pre>
 
-<h1>5.graph apiへPOSTリクエストを送信</h1>
+<h1>5.POSTリクエストを送信してAccess Tokenを取得</h1>
 
 <p>取得したAuthorization Codeを含め、パラメータとして下記をセットしてPOSTでリクエストする</p>
 
@@ -93,27 +93,24 @@ Settings > Advanced > Security > Valid OAuth redirect URIs</p>
  client_secret: &lt;Your App Secret&gt;
 </code></pre>
 
-<h1>6.レスポンスのbodyにあるaccess_tokenを確認</h1>
-
 <p>レスポンスのbodyは下記のようになっている</p>
 
 <pre><code>access_token=&lt;Your Access Token&gt;  
 </code></pre>
 
-<h1>7.tokenの有効期限を伸ばす</h1>
+<p>この生成されたaccess_tokenを使って、facebook graph apiを利用する事ができる</p>
 
-<p>facebook graph apiの場合、このままだとaccess_tokenの有効期限が短すぎる<br/>
+<h1>6.Access Tokenの有効期限を伸ばす</h1>
+
+<p>facebook graph apiの場合、このままだとAccess Tokenの有効期限が短すぎる<br/>
 下記のGETリクエストを送ることで、有効期限を60日間に伸ばす事ができる</p>
 
 <pre><code>GET https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&amp;client_id=&lt;Your App ID&gt;&amp;client_secret=&lt;Your App Secret&gt;&amp;fb_exchange_token=&lt;Your Access Token&gt;  
 </code></pre>
 
-<p>この生成されたaccess_tokenを使って、facebook graph apiを利用する事ができる</p>
-
 <h1>まとめ</h1>
 
-<p>access tokenを取得するまでがめんどくさい<br/>
-ブラウザ無しでtoken発行やりたいけど出来ない<br/>
+<p>OAuth2、Access Token取得後はそれだけでAPIとやりとりできるからシンプルで良いけど、Access Tokenを取得するまでがめんどくさい<br/>
 Facebookでは上記フローだが、twitterとかgithubとか他のサービスもまったく同じなわけじゃないので、他も触ってみたい</p>
 
 <h1>参考</h1>
