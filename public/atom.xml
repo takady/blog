@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2014-12-29T19:57:17+09:00</updated>
+  <updated>2014-12-31T21:18:59+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,217 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2014年まとめ]]></title>
+    <link href="http://takady.github.io/blog/2014/12/31/2014-summary/"/>
+    <updated>2014-12-31T19:26:56+09:00</updated>
+    <id>http://takady.github.io/blog/2014/12/31/2014-summary</id>
+    <content type="html"><![CDATA[<p>今年はコードを書く楽しさを知った１年だった<br/>
+去年までのコードをほとんど書いてなかった時間が悔やまれるけど、来年も前向きにいきたい</p>
+
+<h1>よかったこと</h1>
+
+<ul>
+<li>rubygems.orgに4つgemを出した
+
+<ul>
+<li><a href="https://rubygems.org/profiles/takady">https://rubygems.org/profiles/takady</a></li>
+</ul>
+</li>
+<li>テストコード書くようになった</li>
+<li>ruby/railsを業務で使う機会を得られた</li>
+<li>会社のCI環境を整えた</li>
+<li>勉強会に参加するようになった(YAPC::Asia、RubyKaigi、RubyWorld Conference、他)</li>
+<li>Ruby Advent Calenderに当日飛び入り参加した
+
+<ul>
+<li><a href="http://takady.github.io/blog/2014/12/07/file-safe-logger/">rubyのloggerをnewした後にログファイルを削除するとどうなるのか | Yuichi Takada</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h1>わるかったこと</h1>
+
+<ul>
+<li>勉強会は、聞く側としてしか参加できなかった</li>
+</ul>
+
+
+<h1>1月</h1>
+
+<ul>
+<li>Hadoopでデータ処理するチームから、webアプリを書けるチームに移った</li>
+<li>会社の都合でここから3ヶ月間仙台での生活が始まった</li>
+<li><a href="http://rebuild.fm/">rebuild.fm</a>を発見してハマった、毎日聞いた、今も何回も繰り返し聞いてる</li>
+</ul>
+
+
+<h1>2月</h1>
+
+<ul>
+<li>1年かけて、何か一つ言語をまともに書けるようになりたいと思い、仙台の本屋で平積みされていたパーフェクトRubyという本を買った</li>
+<li><a href="http://tagomoris.hatenablog.com/entry/2014/02/25/091607">あるブログエントリ</a>を読んで、<a href="https://github.com/takady">githubアカウント</a>を作り直した</li>
+</ul>
+
+
+<h1>3月</h1>
+
+<ul>
+<li>業務で始めてrubyでスクリプト書いた</li>
+<li>macbook air買った</li>
+<li>jenkinsをチームに導入した</li>
+<li>認定スクラムマスターという研修を受けて認定を取得した</li>
+</ul>
+
+
+<h1>4月</h1>
+
+<ul>
+<li>仙台から東京に戻った</li>
+<li><a href="http://regional.rubykaigi.org/oedo04/">大江戸Ruby会議04</a>に参加して、みんな楽しそうと思った</li>
+<li>良い目標が思いついた
+  <blockquote class="twitter-tweet" lang="ja"><p>今年の目標は、たくさん失敗することだ … <a href="http://t.co/Cy4xjffowl"><a href="http://t.co/Cy4xjffowl">http://t.co/Cy4xjffowl</a></a></p>&mdash; takady (@takady7) <a href="https://twitter.com/takady7/status/458937108955004928">2014, 4月 23</a></blockquote></li>
+</ul>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<h1>5月</h1>
+
+<ul>
+<li>いくつか勉強会行った
+
+<ul>
+<li><a href="http://blog.takady.net/post/85298039456/rails-why-choose-ruby-on-rails">【Railsセミナー】Why choose Ruby on Rails ? に行ってきた</a></li>
+<li><a href="http://blog.takady.net/post/85727186336/gree-tech-talk-05">GREE Tech Talk #05 : 並行/並列プログラミング</a></li>
+<li><a href="http://blog.takady.net/post/86500885716/heroku-meetup-12">Heroku Meetup #12 に行ってきた</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h1>6月</h1>
+
+<ul>
+<li>27歳になっちゃった</li>
+<li>始めてrubygemsにgemを出した
+
+<ul>
+<li><a href="http://qiita.com/takady/items/a4858c09b56e2b185814">apache logをパースするgemを作ってrubygems.orgに公開してみた - Qiita</a></li>
+</ul>
+</li>
+<li>hipchat、hubotをチームに導入した</li>
+</ul>
+
+
+<h1>7月</h1>
+
+<ul>
+<li>会社のでかめのプロジェクトのリリースが無事終わった</li>
+<li>組織の色々があった
+  <blockquote class="twitter-tweet" lang="ja"><p>やっぱ言いたいこととか疑問とかはちゃんとぶつけた方がいいな&#10;それで相入れなくても、かげで文句言ってるよりもいいと思う</p>&mdash; takady (@takady7) <a href="https://twitter.com/takady7/status/486426378556813313">2014, 7月 8</a></blockquote></li>
+</ul>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<ul>
+<li>勉強会行った
+
+<ul>
+<li><a href="http://blog.takady.net/post/91457205306/api-meetup-tokyo-1">API Meetup Tokyo #1</a></li>
+<li><a href="http://blog.takady.net/post/92888711266/2-ruby-on-rails">第2回「Ruby on Rails チュートリアル」ハンズオンセミナー</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h1>8月</h1>
+
+<ul>
+<li>自分のgemを更新したり、新しく出したりした</li>
+<li>テストコードの良さを身を持って実感し始めた</li>
+<li>有給取ってYAPC::Asia行って、最高に楽しかった
+
+<ul>
+<li><a href="http://blog.takady.net/post/96242359616/yapc-asia-tokyo-2014">YAPC::Asia Tokyo 2014</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h1>9月</h1>
+
+<ul>
+<li>有給取ってrubyKaigiに行った
+
+<ul>
+<li><a href="http://blog.takady.net/post/98302265911/rubykaigi2014">RubyKaigi2014に行ってきた</a></li>
+</ul>
+</li>
+<li>terminal環境を整えて、emacsを使いはじめる
+
+<ul>
+<li><a href="http://blog.takady.net/post/98303277811/zsh-ghq-peco-tmux">zsh、ghq、peco、tmuxなどについて</a></li>
+</ul>
+</li>
+<li>社内rubyコミュニティの集まりに顔を出してみた
+
+<ul>
+<li><a href="http://blog.takady.net/post/98803250651/meetup-1-20140930-issue-1-aoyokorb-aoyoko-rb">meetup #1 20140930 · Issue #1 · Aoyokorb/Aoyoko.rb&hellip;</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h1>10月</h1>
+
+<ul>
+<li>会社のrails案件でコードたくさん書いた</li>
+</ul>
+
+
+<h1>11月</h1>
+
+<ul>
+<li>会社のrails案件でコードたくさん書いた</li>
+<li>会社のPCもmacにしてもらえた</li>
+<li>RubyWorld Conferenceで初めて島根に行った</li>
+<li>blogをtumblrからoctopress on github pagesに変えた</li>
+<li>Goに興味を持ち始める</li>
+<li>Go Conferenceにも行った</li>
+</ul>
+
+
+<h1>12月</h1>
+
+<ul>
+<li>会社のrails案件でコードたくさん書いた</li>
+<li>12/07のRuby Advent Calenderが当日に急遽空いた事に気づいたので、僭越ながら書かせてもらった
+
+<ul>
+<li><a href="http://takady.github.io/blog/2014/12/07/file-safe-logger/">rubyのloggerをnewした後にログファイルを削除するとどうなるのか | Yuichi Takada</a></li>
+</ul>
+</li>
+<li>もっと一次情報を得たいと思い、Feedlyで海外を含めたblogポストをチェックするようになった</li>
+</ul>
+
+
+<h1>来年について</h1>
+
+<ul>
+<li>LTとか、今年以上にもっとアウトプット</li>
+<li>英語の記事も読んで情報をもっと早く得る</li>
+<li>毎週何か作って出したい</li>
+<li>githubで100スターくらい取れるようなものを作る</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[facebook graph apiのAccess Tokenを取得するまで]]></title>
