@@ -9,6 +9,7 @@
 		}
 	}
 	.year{
+		margin: 0px;
 		line-height: 35px;
 		width: 200px;
 		top: 0;
@@ -20,6 +21,7 @@
 		@media screen and (max-width: 620px){
 			position: relative;
 			width: 100%;
+			margin: 10px 0 25px 0;
 		}
 	}
 	article{

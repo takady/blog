@@ -10,7 +10,7 @@ article{
 		font-size: 22px;
 		font-weight: bold;
 		line-height: 1;
-		margin-left:0px;
+		margin: 10px 0 10px 0;
 		text-align:left;
 		border-bottom: 0px;
 		a{
@@ -23,14 +23,14 @@ article{
 		padding-bottom: 10px;
 		@media screen and (max-width: 620px) {
 		font-size: 18px;
+		margin: 5px 0 0 0;
 		}
-
 	}
 	
 	.entry-content{
 		line-height: 1.5;
 		text-align: left;
-		margin-top: 40px;
+		margin-top: 20px;
 		
 				a {
  			text-decoration:none;
@@ -103,7 +103,7 @@ article{
 		}
 		
 		blockquote{
-			background: $color06;
+			background: $color08;
 			border-left: 5px solid $color03;
 			padding: 15px 20px;
 			margin-top: 10px;
@@ -115,7 +115,7 @@ article{
 			border: none;
 		}
 		table{
-			background: $color06;
+			background: $color08;
 			border: 1px solid $color03;
 			border-spacing: 0;
 			margin-top: 10px;
