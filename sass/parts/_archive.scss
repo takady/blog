@@ -17,18 +17,18 @@
 			position: absolute;
 			width: 100%;
 		}
-		@media screen and (max-width: 600px){
+		@media screen and (max-width: 620px){
 			position: relative;
 			width: 100%;
 		}
 	}
 	article{
 		padding-bottom: 20px;
-		@media screen and (max-width: 600px){
+		@media screen and (max-width: 620px){
 			margin-left: 0;
 			&:first-of-type{
 				border-top: none;
-				padding-top: 20px;
+				padding-top: 0px;
 			}
 		}
 		.title{
