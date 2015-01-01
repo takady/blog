@@ -33,10 +33,10 @@
 		}
 		.title{
 			padding-top: 10px;
-			padding-bottom: 10px;
+			padding-bottom: 0px;
 		}
 		.meta{
-			color: $color-gray02;
+			color: $color01;
 			font-size: 0.9em;
 			line-height: 2;
 			margin-top: 10px;
@@ -47,16 +47,16 @@
 				margin-right: 30px;
 				@include inline-block;
 				&:before{
-					color: $color-gray03;
+					color: $color03;
 					font: 1.3em $font-icon;
 					padding-right: 10px;
 				}
 			}
 			a{
-				color: $color-gray02;
+				color: $color01;
 				@include transition(0.3s);
 				&:hover{
-					color: $color-gray01;
+					color: $color01;
 				}
 			}
 			.date, .tags, .comments {
@@ -65,7 +65,7 @@
 			    position: relative;
 			    float: left;
 			    &:before{
-			      color: $color-gray02;
+			      color: $color01;
 			      font: 1.3em $font-icon;
 			      line-height: 1.6em;
 			      position: absolute;

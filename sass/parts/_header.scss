@@ -9,10 +9,10 @@ $header-height: 30px;
 		position: relative;
 	}
 	a{
-		color: $color-gray01;
+		color: $color-main;
 		@include transition(color 0.3s);
 		&:hover{
-			color: $color-main;
+			color: $color-link;
 			border-bottom:none;
 		}
 	}
@@ -61,7 +61,7 @@ $header-height: 30px;
 				margin-top: -38px;
 				&:after{
 					content: "\f078";
-					color: $color-gray03;
+					color: $color03;
 					font: 12px $font-icon;
 					padding-left: 10px;
 				}
@@ -81,8 +81,8 @@ $header-height: 30px;
 			left: -15px;
 			z-index: 10;
 			white-space: nowrap;
-			background: $color-gray04;
-			border: 1px solid $color-gray03;
+			background: $color06;
+			border: 1px solid $color03;
 			list-style: none;
 			display: none;
 			@media screen and (max-width: 1040px){
@@ -94,7 +94,7 @@ $header-height: 30px;
 				@include border-radius(0 5px 5px 5px);
 			}
 			li{
-				@include border-shadow($color-background, $color-gray03);
+				@include border-shadow($color-background, $color03);
 				&:hover{
 					background: #d5d5d5;
 				}
@@ -112,12 +112,12 @@ $header-height: 30px;
 					padding: 5px 15px;
 					&:after{
 						content: "\f054";
-						color: $color-gray02;
+						color: $color01;
 						font: 12px $font-icon;
 						padding-left: 10px;
 					}
 					&:hover{
-						color: $color-gray01;
+						color: $color01;
 					}
 					&:only-child{
 						&:after{
@@ -164,7 +164,7 @@ $header-height: 30px;
 		}
 		&:before{
 			content: "\f002";
-			color: $color-gray03;
+			color: $color03;
 			font: 18px $font-icon;
 			line-height: 30px;
 			position: absolute;
@@ -173,8 +173,8 @@ $header-height: 30px;
 		}
 		input[type="text"]{
 			background: #f2f2f2;
-			color: $color-gray02;
-			border: 1px solid $color-gray04;
+			color: $color01;
+			border: 1px solid $color06;
 			font: 13px $font-default;
 			padding: 6px 15px 6px 35px;
 			width: 100px;
@@ -182,8 +182,8 @@ $header-height: 30px;
 			@include border-radius(15px);
 			&:focus, &:active{
 				background: #fff;
-				border-top: 1px solid $color-gray03;
-				color: $color-gray01;
+				border-top: 1px solid $color03;
+				color: $color01;
 				outline: none;
 			}
 		}

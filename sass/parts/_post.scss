@@ -3,7 +3,7 @@
 		margin-top: 10px;
 		line-height: 2;
 		font-size: 0.9em;
-		color: $color-gray02;
+		color: $color01;
 		//width: 170px;
 		@media screen and (max-width: 620px){
 			margin-top: 15px;
@@ -25,7 +25,7 @@
 		}
 
 		a:hover {
-			border-bottom:1px solid #bf0222;
+			border-bottom:1px solid $color-link;
 		}
 		.date, .tags, .comments{
 			//position: relative;
