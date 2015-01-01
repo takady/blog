@@ -4,7 +4,7 @@ article{
 	position: relative;
 	@media screen and (max-width: 620px){
 		padding-top: 10px;
-		margin-top: 10px;
+		margin-top: 0px;
 	}
 	h2.title{
 		font-size: 22px;
@@ -85,18 +85,6 @@ article{
 		}
 		p{
 			margin-top: 10px;	
-		}
-		h2{
-			font-weight: 300;
-			border-bottom: 1px solid $color06;
-			position: relative;
-			&:before{
-				content: "";
-				position: absolute;
-				bottom: -2px;
-				border-bottom: 1px solid $color05;
-				width: 100%;
-			}
 		}
 		
 		img, video{

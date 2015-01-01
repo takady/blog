@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-01-01T14:51:41+09:00</updated>
+  <updated>2015-01-01T15:17:28+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -50,7 +50,7 @@
 </ul>
 
 
-<h1>1月</h1>
+<h2>1月</h2>
 
 <ul>
 <li>Hadoopでデータ処理するチームから、webアプリを書けるチームに移った</li>
@@ -59,7 +59,7 @@
 </ul>
 
 
-<h1>2月</h1>
+<h2>2月</h2>
 
 <ul>
 <li>1年かけて、何か一つ言語をまともに書けるようになりたいと思い、仙台の本屋で平積みされていたパーフェクトRubyという本を買った</li>
@@ -67,7 +67,7 @@
 </ul>
 
 
-<h1>3月</h1>
+<h2>3月</h2>
 
 <ul>
 <li>業務で始めてrubyでスクリプト書いた</li>
@@ -77,7 +77,7 @@
 </ul>
 
 
-<h1>4月</h1>
+<h2>4月</h2>
 
 <ul>
 <li>仙台から東京に戻った</li>
@@ -90,7 +90,7 @@
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
-<h1>5月</h1>
+<h2>5月</h2>
 
 <ul>
 <li>いくつか勉強会行った
@@ -104,7 +104,7 @@
 </ul>
 
 
-<h1>6月</h1>
+<h2>6月</h2>
 
 <ul>
 <li>27歳になっちゃった</li>
@@ -118,7 +118,7 @@
 </ul>
 
 
-<h1>7月</h1>
+<h2>7月</h2>
 
 <ul>
 <li>会社のでかめのプロジェクトのリリースが無事終わった</li>
@@ -141,7 +141,7 @@
 </ul>
 
 
-<h1>8月</h1>
+<h2>8月</h2>
 
 <ul>
 <li>自分のgemを更新したり、新しく出したりした</li>
@@ -155,7 +155,7 @@
 </ul>
 
 
-<h1>9月</h1>
+<h2>9月</h2>
 
 <ul>
 <li>有給取ってrubyKaigiに行った
@@ -179,14 +179,14 @@
 </ul>
 
 
-<h1>10月</h1>
+<h2>10月</h2>
 
 <ul>
 <li>会社のrails案件でコードたくさん書いた</li>
 </ul>
 
 
-<h1>11月</h1>
+<h2>11月</h2>
 
 <ul>
 <li>会社のrails案件でコードたくさん書いた</li>
@@ -198,7 +198,7 @@
 </ul>
 
 
-<h1>12月</h1>
+<h2>12月</h2>
 
 <ul>
 <li>会社のrails案件でコードたくさん書いた</li>
