@@ -46,6 +46,7 @@ bash_profileはシムリンクを削除して実ファイルを用意した.
     core@core-01 ~ $ ls -l ~/.bash_profile
     lrwxrwxrwx 1 core core 34 Jan  9 04:47 /home/core/.bash_profile -> ../../usr/share/skel/.bash_profile
 
+    core@core-01 ~ $ rm ~/.bash_profile
     core@core-01 ~ $ cat <<'EOF' >> ~/.bash_profile
     >
     > export GOROOT=/opt/go

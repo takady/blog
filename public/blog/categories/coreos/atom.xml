@@ -4,7 +4,7 @@
   <title><![CDATA[Category: coreos | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/coreos/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-01-13T20:22:10+09:00</updated>
+  <updated>2015-01-13T22:43:54+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -65,6 +65,7 @@ core@core-01 ~ $ sudo tar zxf go1.3.3.linux-amd64.tar.gz -C /opt/
 <pre><code>core@core-01 ~ $ ls -l ~/.bash_profile
 lrwxrwxrwx 1 core core 34 Jan  9 04:47 /home/core/.bash_profile -&gt; ../../usr/share/skel/.bash_profile
 
+core@core-01 ~ $ rm ~/.bash_profile
 core@core-01 ~ $ cat &lt;&lt;'EOF' &gt;&gt; ~/.bash_profile
 &gt;
 &gt; export GOROOT=/opt/go
