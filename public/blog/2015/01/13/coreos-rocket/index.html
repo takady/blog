@@ -48,12 +48,12 @@
 
 
 	<h2 class="title">はじめてのcoreos/rocket</h2>
-	<div class="entry-content"><p>rocketとは,ざっくり言うとCoreOS社が開発しているDockerのalternative実装で, まだprototypeという位置づけである.<br/>
-<a href="https://github.com/coreos/rocket/blob/master/Documentation/getting-started-guide.md">rocket/getting-started-guide.md at master · coreos/rocket</a>を通して,rocketをCoreOS上で動かしてみた.</p>
+	<div class="entry-content"><p>rocketとは, CoreOS社が開発しているDockerのalternative実装で, まだprototypeという位置づけである.<br/>
+<a href="https://github.com/coreos/rocket/blob/master/Documentation/getting-started-guide.md">rocket/getting-started-guide.md at master · coreos/rocket</a>を通して, rocketをCoreOS上で動かしてみた.</p>
 
 <h1>vagrantでCoreOSのVMを用意</h1>
 
-<p>まず,CoreOSの環境を用意する.</p>
+<p>まず, CoreOSの環境を用意する.</p>
 
 <pre><code>$ git clone https://github.com/coreos/coreos-vagrant/
 $ cd coreos-vagrant
@@ -94,7 +94,6 @@ core@core-01 ~ $ sudo tar zxf go1.3.3.linux-amd64.tar.gz -C /opt/
 
 <pre><code>core@core-01 ~ $ ls -l ~/.bash_profile
 lrwxrwxrwx 1 core core 34 Jan  9 04:47 /home/core/.bash_profile -&gt; ../../usr/share/skel/.bash_profile
-
 core@core-01 ~ $ rm ~/.bash_profile
 core@core-01 ~ $ cat &lt;&lt;'EOF' &gt;&gt; ~/.bash_profile
 &gt;
@@ -226,7 +225,7 @@ go version go1.3.3 linux/amd64
 manifest.json: valid ImageManifest
 </code></pre>
 
-<h1>App Container Image(ACI)のBuild</h1>
+<h1>App Container Image(ACI)のビルド</h1>
 
 <pre><code>core@core-01 ~ $ mkdir -p hello-layout/rootfs/bin
 core@core-01 ~ $ cp -i manifest.json hello-layout/manifest
@@ -247,8 +246,8 @@ drwxr-xr-x 500/500           0 2015-01-13 10:26 rootfs/bin
 
 <h1>ACIの起動</h1>
 
-<p>ここでcontainerを起動し,helloアプリがhttpリクエストを受けられる状態になる.<br/>
-ちなみに,containerを落としたい時は<code>ctrl-]</code>を3回押す.</p>
+<p>ここでcontainerを起動し, helloアプリがhttpリクエストを受けられる状態になる.<br/>
+ちなみに, containerを落としたい時は<code>ctrl-]</code>を3回押す.</p>
 
 <pre><code>core@core-01 ~ $ sudo ./rocket-v0.1.1/rkt --debug run hello.aci
 2015/01/13 10:27:43 Unpacking stage1 rootfs

@@ -6,11 +6,11 @@ comments: true
 categories: coreos
 ---
 
-rocketとは,ざっくり言うとCoreOS社が開発しているDockerのalternative実装で, まだprototypeという位置づけである.  
-[rocket/getting-started-guide.md at master · coreos/rocket](https://github.com/coreos/rocket/blob/master/Documentation/getting-started-guide.md)を通して,rocketをCoreOS上で動かしてみた.  
+rocketとは, CoreOS社が開発しているDockerのalternative実装で, まだprototypeという位置づけである.  
+[rocket/getting-started-guide.md at master · coreos/rocket](https://github.com/coreos/rocket/blob/master/Documentation/getting-started-guide.md)を通して, rocketをCoreOS上で動かしてみた.  
 
 # vagrantでCoreOSのVMを用意
-まず,CoreOSの環境を用意する.
+まず, CoreOSの環境を用意する.
 
     $ git clone https://github.com/coreos/coreos-vagrant/
     $ cd coreos-vagrant
@@ -45,7 +45,6 @@ bash_profileはシムリンクを削除して実ファイルを用意した.
 
     core@core-01 ~ $ ls -l ~/.bash_profile
     lrwxrwxrwx 1 core core 34 Jan  9 04:47 /home/core/.bash_profile -> ../../usr/share/skel/.bash_profile
-
     core@core-01 ~ $ rm ~/.bash_profile
     core@core-01 ~ $ cat <<'EOF' >> ~/.bash_profile
     >
@@ -126,7 +125,7 @@ validationする.
     core@core-01 ~ $ ./appc-spec-v0.1.1/actool -debug validate manifest.json
     manifest.json: valid ImageManifest
 
-# App Container Image(ACI)のBuild
+# App Container Image(ACI)のビルド
     core@core-01 ~ $ mkdir -p hello-layout/rootfs/bin
     core@core-01 ~ $ cp -i manifest.json hello-layout/manifest
     core@core-01 ~ $ cp -i hello hello-layout/rootfs/bin/
@@ -143,8 +142,8 @@ validationする.
     -rw-r--r-- root/root       510 2015-01-13 10:27 manifest
 
 # ACIの起動
-ここでcontainerを起動し,helloアプリがhttpリクエストを受けられる状態になる.  
-ちなみに,containerを落としたい時は`ctrl-]`を3回押す.  
+ここでcontainerを起動し, helloアプリがhttpリクエストを受けられる状態になる.  
+ちなみに, containerを落としたい時は`ctrl-]`を3回押す.  
 
     core@core-01 ~ $ sudo ./rocket-v0.1.1/rkt --debug run hello.aci
     2015/01/13 10:27:43 Unpacking stage1 rootfs
