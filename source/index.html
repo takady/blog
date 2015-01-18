@@ -3,7 +3,7 @@ layout: default
 ---
 
 {% assign index = true %}
-{% for post in paginator.posts %}
-{% assign content = post.content %}
-{% include archive_post.html %}
+
+{% for post in site.posts reverse %}
+  {% include archive_post.html %}
 {% endfor %}
