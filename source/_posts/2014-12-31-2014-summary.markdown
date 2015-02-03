@@ -46,9 +46,9 @@ categories:
 
 ## 5月
 - いくつか勉強会行った
-  - [【Railsセミナー】Why choose Ruby on Rails ? に行ってきた](http://blog.takady.net/post/85298039456/rails-why-choose-ruby-on-rails)
-  - [GREE Tech Talk #05 : 並行/並列プログラミング](http://blog.takady.net/post/85727186336/gree-tech-talk-05)
-  - [Heroku Meetup #12 に行ってきた](http://blog.takady.net/post/86500885716/heroku-meetup-12)
+  - [【Railsセミナー】Why choose Ruby on Rails ? に行ってきた](http://takady7.tumblr.com/post/85298039456/rails-why-choose-ruby-on-rails)
+  - [GREE Tech Talk #05 : 並行/並列プログラミング](http://takady7.tumblr.com/post/85727186336/gree-tech-talk-05)
+  - [Heroku Meetup #12 に行ってきた](http://takady7.tumblr.com/post/86500885716/heroku-meetup-12)
 
 ## 6月
 - 27歳になっちゃった
@@ -62,22 +62,22 @@ categories:
     <blockquote class="twitter-tweet" lang="ja"><p>やっぱ言いたいこととか疑問とかはちゃんとぶつけた方がいいな&#10;それで相入れなくても、かげで文句言ってるよりもいいと思う</p>&mdash; takady (@takady7) <a href="https://twitter.com/takady7/status/486426378556813313">2014, 7月 8</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 - 勉強会行った
-  - [API Meetup Tokyo #1](http://blog.takady.net/post/91457205306/api-meetup-tokyo-1)
-  - [第2回「Ruby on Rails チュートリアル」ハンズオンセミナー](http://blog.takady.net/post/92888711266/2-ruby-on-rails)
+  - [API Meetup Tokyo #1](http://takady7.tumblr.com/post/91457205306/api-meetup-tokyo-1)
+  - [第2回「Ruby on Rails チュートリアル」ハンズオンセミナー](http://takady7.tumblr.com/post/92888711266/2-ruby-on-rails)
 
 ## 8月
 - 自分のgemを更新したり、新しく出したりした
 - テストコードの良さを身を持って実感し始めた
 - 有給取ってYAPC::Asia行って、最高に楽しかった
-  - [YAPC::Asia Tokyo 2014](http://blog.takady.net/post/96242359616/yapc-asia-tokyo-2014)
+  - [YAPC::Asia Tokyo 2014](http://takady7.tumblr.com/post/96242359616/yapc-asia-tokyo-2014)
 
 ## 9月
 - 有給取ってrubyKaigiに行った
-  - [RubyKaigi2014に行ってきた](http://blog.takady.net/post/98302265911/rubykaigi2014)
+  - [RubyKaigi2014に行ってきた](http://takady7.tumblr.com/post/98302265911/rubykaigi2014)
 - terminal環境を整えて、emacsを使いはじめる
-  - [zsh、ghq、peco、tmuxなどについて](http://blog.takady.net/post/98303277811/zsh-ghq-peco-tmux)
+  - [zsh、ghq、peco、tmuxなどについて](http://takady7.tumblr.com/post/98303277811/zsh-ghq-peco-tmux)
 - 社内rubyコミュニティの集まりに顔を出してみた
-  - [meetup #1 20140930 · Issue #1 · Aoyokorb/Aoyoko.rb...](http://blog.takady.net/post/98803250651/meetup-1-20140930-issue-1-aoyokorb-aoyoko-rb)
+  - [meetup #1 20140930 · Issue #1 · Aoyokorb/Aoyoko.rb...](http://takady7.tumblr.com/post/98803250651/meetup-1-20140930-issue-1-aoyokorb-aoyoko-rb)
 
 ## 10月
 - 会社のrails案件でコードたくさん書いた
