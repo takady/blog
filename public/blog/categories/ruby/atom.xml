@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-02-08T23:23:03+09:00</updated>
+  <updated>2015-02-11T17:19:03+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[apache_log-parserを修正してBenchmarkをとってみた]]></title>
+    <link href="http://takady.github.io/blog/2015/02/11/apache-log-parser-benchmark/"/>
+    <updated>2015-02-11T16:53:46+09:00</updated>
+    <id>http://takady.github.io/blog/2015/02/11/apache-log-parser-benchmark</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/takady/apache_log-parser">takady/apache_log-parser</a></p>
+
+<p>先週，とある機会に，とあるエンジニアの方が，僕が作った<a href="https://github.com/takady/apache_log-parser">apache_log-parser</a>というrubyのgemに対してアドバイスをしてくれた．<br/>
+「parseメソッド呼ぶ度に毎回Patternクラスのインスタンスとか作ったりしてるけど，Parserをクラスにして，最初にインスタンス作る時に1回だけやるようにした方が効率良いよ」みたいな指摘だった．確かにその通りだった．指摘ありがとうございます！<br/>
+ついでに，修正する前と後でパフォーマンスどれだけ良くなったのかを，rubyの標準ライブラリのBenchmarkを使って計測してみた．</p>
+
+<p>benchmark.rb自体はこんな感じで，100万行parseするのにかかる時間を計測している．</p>
+
+<pre><code class="ruby">$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+require 'apache_log/parser'
+require 'benchmark'
+
+common_line = '127.0.0.1 - - [20/May/2014:20:04:04 +0900] "GET /test/indx.html HTTP/1.1" 200 4576'
+combined_line = '192.168.0.1 - - [07/Jun/2014:14:58:55 +0900] "GET /category/electronics HTTP/1.1" 200 128 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0.1) Gecko/20100101 Firefox/9.0.1"'
+customized_line = '192.168.0.1 - - [07/Feb/2011:10:59:59 +0900] "GET /x/i.cgi/net/0000/ HTTP/1.1" 200 9891 "-" "DoCoMo/2.0 P03B(c500;TB;W24H16)" virtualhost.example.jp "192.0.2.16794832933550" "09011112222333_xx.ezweb.ne.jp" 533593'
+
+common_parser = ApacheLog::Parser.new('common')
+combined_parser = ApacheLog::Parser.new('combined')
+customized_parser = ApacheLog::Parser.new('combined', %w(vhost usertrack mobileid request_duration))
+
+n = 1_000_000
+Benchmark.bm(12) do |x|
+  x.report('common:')     { (1..n).each{common_parser.parse(common_line)} }
+  x.report('combined:')   { (1..n).each{combined_parser.parse(combined_line)} }
+  x.report('customized:') { (1..n).each{customized_parser.parse(customized_line)} }
+end
+</code></pre>
+
+<h2>Before</h2>
+
+<p>まず，修正前のコードでのベンチマーク．</p>
+
+<pre><code>$ ruby benchmark.rb
+                   user     system      total        real
+common:      125.630000   0.180000 125.810000 (125.889122)
+combined:    151.530000   0.440000 151.970000 (152.090644)
+customized:  186.610000   0.460000 187.070000 (187.200379)
+</code></pre>
+
+<h2>After</h2>
+
+<p>次に，修正後のコードでのベンチマーク．</p>
+
+<pre><code>$ ruby benchmark.rb
+                   user     system      total        real
+common:       20.770000   0.020000  20.790000 ( 20.797196)
+combined:     30.090000   0.050000  30.140000 ( 30.161369)
+customized:   40.240000   0.070000  40.310000 ( 40.388290)
+</code></pre>
+
+<p>めちゃくちゃ改善された！！</p>
+
+<h1>参考</h1>
+
+<p><a href="http://a-newcomer.com/29">RubyでのBenchmarkの取り方をば。</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[embulk-plugin-sqlite3を作った]]></title>
@@ -385,30 +448,6 @@ featureファイルの<code>Then ウィキペディアへようこそと表示�
 <a href="http://qiita.com/moriyaman/items/af2a0264adbaaa0d2029">Rails + Turnip + Capybara + poltergeistでBDDテスト - Qiita</a><br/>
 <a href="http://tmpla.info/installation-of-capybara-webkit/">Capybara WebkitをCentOSで使えるようにする方法 – 日本の天ぷら情報</a><br/>
 <a href="http://qiita.com/take/items/779747e0981355e569ad">poltergeist - Capybaraを使う際に知っておきたいこと - Qiita</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rubyのloggerでlogのヘッダを出力しない]]></title>
-    <link href="http://takady.github.io/blog/2014/11/22/disable-ruby-log-header/"/>
-    <updated>2014-11-22T13:11:18+09:00</updated>
-    <id>http://takady.github.io/blog/2014/11/22/disable-ruby-log-header</id>
-    <content type="html"><![CDATA[<p>rubyのLoggerを使っていると、Logger.newした際に生成されるlogファイルには、デフォルトで下記のようなヘッダが出力される。<br/>
-<code># Logfile created on 2014-11-22 13:15:26 +0900 by logger.rb/44203</code></p>
-
-<p>これを出したくない場合は、下記のようにヘッダをつける<a href="https://github.com/ruby/ruby/blob/trunk/lib/logger.rb#L649-L653">Logger::LogDevice#add_log_header</a>メソッドを空にoverrideすると良い。</p>
-
-<pre><code class="ruby">class Logger::LogDevice
-  def add_log_header(file)
-  end
-end
-
-log = Logger.new('info.log')
-</code></pre>
-
-<h1>参考</h1>
-
-<p><a href="http://stackoverflow.com/questions/4096336/can-i-disable-the-log-header-for-ruby-logger">Can I disable the log header for ruby logger? - Stack Overflow</a></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-02-08T23:23:03+09:00</updated>
+  <updated>2015-02-11T17:19:03+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[apache_log-parserを修正してBenchmarkをとってみた]]></title>
+    <link href="http://takady.github.io/blog/2015/02/11/apache-log-parser-benchmark/"/>
+    <updated>2015-02-11T16:53:46+09:00</updated>
+    <id>http://takady.github.io/blog/2015/02/11/apache-log-parser-benchmark</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/takady/apache_log-parser">takady/apache_log-parser</a></p>
+
+<p>先週，とある機会に，とあるエンジニアの方が，僕が作った<a href="https://github.com/takady/apache_log-parser">apache_log-parser</a>というrubyのgemに対してアドバイスをしてくれた．<br/>
+「parseメソッド呼ぶ度に毎回Patternクラスのインスタンスとか作ったりしてるけど，Parserをクラスにして，最初にインスタンス作る時に1回だけやるようにした方が効率良いよ」みたいな指摘だった．確かにその通りだった．指摘ありがとうございます！<br/>
+ついでに，修正する前と後でパフォーマンスどれだけ良くなったのかを，rubyの標準ライブラリのBenchmarkを使って計測してみた．</p>
+
+<p>benchmark.rb自体はこんな感じで，100万行parseするのにかかる時間を計測している．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$LOAD_PATH</span><span class="o">.</span><span class="n">unshift</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;../lib&#39;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;apache_log/parser&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;benchmark&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">common_line</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1 - - [20/May/2014:20:04:04 +0900] &quot;GET /test/indx.html HTTP/1.1&quot; 200 4576&#39;</span>
+</span><span class='line'><span class="n">combined_line</span> <span class="o">=</span> <span class="s1">&#39;192.168.0.1 - - [07/Jun/2014:14:58:55 +0900] &quot;GET /category/electronics HTTP/1.1&quot; 200 128 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0.1) Gecko/20100101 Firefox/9.0.1&quot;&#39;</span>
+</span><span class='line'><span class="n">customized_line</span> <span class="o">=</span> <span class="s1">&#39;192.168.0.1 - - [07/Feb/2011:10:59:59 +0900] &quot;GET /x/i.cgi/net/0000/ HTTP/1.1&quot; 200 9891 &quot;-&quot; &quot;DoCoMo/2.0 P03B(c500;TB;W24H16)&quot; virtualhost.example.jp &quot;192.0.2.16794832933550&quot; &quot;09011112222333_xx.ezweb.ne.jp&quot; 533593&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">common_parser</span> <span class="o">=</span> <span class="no">ApacheLog</span><span class="o">::</span><span class="no">Parser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;common&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">combined_parser</span> <span class="o">=</span> <span class="no">ApacheLog</span><span class="o">::</span><span class="no">Parser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;combined&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">customized_parser</span> <span class="o">=</span> <span class="no">ApacheLog</span><span class="o">::</span><span class="no">Parser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;combined&#39;</span><span class="p">,</span> <span class="sx">%w(vhost usertrack mobileid request_duration)</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">n</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+</span><span class='line'><span class="no">Benchmark</span><span class="o">.</span><span class="n">bm</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;common:&#39;</span><span class="p">)</span>     <span class="p">{</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.n</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="n">common_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">common_line</span><span class="p">)}</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;combined:&#39;</span><span class="p">)</span>   <span class="p">{</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.n</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="n">combined_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">combined_line</span><span class="p">)}</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">x</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s1">&#39;customized:&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.n</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="n">customized_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">customized_line</span><span class="p">)}</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Before</h2>
+
+<p>まず，修正前のコードでのベンチマーク．</p>
+
+<pre><code>$ ruby benchmark.rb
+                   user     system      total        real
+common:      125.630000   0.180000 125.810000 (125.889122)
+combined:    151.530000   0.440000 151.970000 (152.090644)
+customized:  186.610000   0.460000 187.070000 (187.200379)
+</code></pre>
+
+<h2>After</h2>
+
+<p>次に，修正後のコードでのベンチマーク．</p>
+
+<pre><code>$ ruby benchmark.rb
+                   user     system      total        real
+common:       20.770000   0.020000  20.790000 ( 20.797196)
+combined:     30.090000   0.050000  30.140000 ( 30.161369)
+customized:   40.240000   0.070000  40.310000 ( 40.388290)
+</code></pre>
+
+<p>めちゃくちゃ改善された！！</p>
+
+<h1>参考</h1>
+
+<p><a href="http://a-newcomer.com/29">RubyでのBenchmarkの取り方をば。</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[embulk-plugin-sqlite3を作った]]></title>
