@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tips | Yuichi Takada]]></title>
+  <link href="http://takady.github.io/blog/categories/tips/atom.xml" rel="self"/>
+  <link href="http://takady.github.io/"/>
+  <updated>2015-03-27T00:51:11+09:00</updated>
+  <id>http://takady.github.io/</id>
+  <author>
+    <name><![CDATA[Yuichi Takada]]></name>
+    <email><![CDATA[takadyuichi@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[標準出力のjson文字列を手軽にpretty printする]]></title>
+    <link href="http://takady.github.io/blog/2015/03/27/json-pp/"/>
+    <updated>2015-03-27T00:41:40+09:00</updated>
+    <id>http://takady.github.io/blog/2015/03/27/json-pp</id>
+    <content type="html"><![CDATA[<p><code>jq</code>使えばいいんですが，入ってない時とかに．</p>
+
+<pre><code>$ echo '{ "foo": "bar", "test": 10 }' | python -mjson.tool
+{
+    "foo": "bar",
+    "test": 10
+}
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
