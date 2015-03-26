@@ -1,0 +1,142 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>rubygems.orgに公開しているgemの名前を変更する | Yuichi Takada</title>
+
+	<meta name="author" content="Yuichi Takada"> 
+	
+	<meta name="description" content="a weblog about Programming and Tech."> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Yuichi Takada" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><a href="/"><h1>Yuichi Takada</h1></a>
+<nav id="main-nav"></nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post"><div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-03-27T00:56:07+09:00" pubdate data-updated="true">Mar 27th, 2015</time></div>
+</div>
+
+
+	<h2 class="title">rubygems.orgに公開しているgemの名前を変更する</h2>
+	<div class="entry-content"><p>必要になったので調べてみた．<br/>
+結論からいうと，renameはできない．ちなみにgithubのrepositoryはrenameできる．<br/>
+調べた結果，自分は下記の方法をとった．</p>
+
+<ol>
+<li>新しい名前のgemのコードを用意する．既存repositoryをrenameする場合は，.gemspecなど漏れなく修正する．</li>
+<li>新しい名前のgemを<code>rake release</code>する．</li>
+<li><code>gem yank</code>で古い名前のgemをindexから外す．</li>
+</ol>
+
+
+<p><code>gem yank</code>してもrubygems.org上のページは残るのでその点注意．</p>
+
+<h1>参考</h1>
+
+<ul>
+<li><p><a href="http://help.rubygems.org/kb/gemcutter/removing-a-published-rubygem">Removing a published RubyGem / Gemcutter / Knowledge Base - RubyGems.org Support</a></p></li>
+<li><p><a href="http://blog.s21g.com/articles/1755">公開した gem を削除する方法 - ヽ( ・∀・)ノくまくまー - s21g</a></p></li>
+</ul>
+
+</div>
+
+
+<div class="sharing">
+  
+  <div class="sns-tw">
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js  ';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+  
+  <div class="sns-hb">
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  </div>
+  
+  <div class="sns-fb">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-like" expr:data-href="data:post.url" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+  </div>
+  
+  
+</div>
+</article>
+</div>
+	<footer id="footer" class="inner"><div class="aboutme">
+<hr>
+  <div class="profile">
+    <a href="http://twitter.com/takady7"><img class="icon" src="https://ja.gravatar.com/userimage/64821088/b51b1f5635f1cdf8735a75d7787c6a20.jpeg"></a>
+
+    <h3>Yuichi Takada</h3>
+    <p><a href="http://twitter.com/takady7">@takady7</a>, a software engineer in Tokyo. Born in 1987.</p>
+
+    <div class="codes">
+      <h4>Codes</h4>
+      <div class="github"><a href="https://github.com/takady">github.com/takady</a></div>
+      <div class="rubygems"><a href="https://rubygems.org/profiles/takady">rubygems.org/takady</a></div>
+    </div>
+  </div>
+
+  <div class="float_clear"></div>
+
+</div>
+Copyright &copy; 2015
+ Yuichi Takada 
+<br>
+Powered by Octopress.
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-56996369-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</footer>
+	
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-03-27T00:51:11+09:00</updated>
+  <updated>2015-03-27T01:29:13+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rubygems.orgに公開しているgemの名前を変更する]]></title>
+    <link href="http://takady.github.io/blog/2015/03/27/how-to-rename-gem/"/>
+    <updated>2015-03-27T00:56:07+09:00</updated>
+    <id>http://takady.github.io/blog/2015/03/27/how-to-rename-gem</id>
+    <content type="html"><![CDATA[<p>必要になったので調べてみた．<br/>
+結論からいうと，renameはできない．ちなみにgithubのrepositoryはrenameできる．<br/>
+調べた結果，自分は下記の方法をとった．</p>
+
+<ol>
+<li>新しい名前のgemのコードを用意する．既存repositoryをrenameする場合は，.gemspecなど漏れなく修正する．</li>
+<li>新しい名前のgemを<code>rake release</code>する．</li>
+<li><code>gem yank</code>で古い名前のgemをindexから外す．</li>
+</ol>
+
+
+<p><code>gem yank</code>してもrubygems.org上のページは残るのでその点注意．</p>
+
+<h1>参考</h1>
+
+<ul>
+<li><p><a href="http://help.rubygems.org/kb/gemcutter/removing-a-published-rubygem">Removing a published RubyGem / Gemcutter / Knowledge Base - RubyGems.org Support</a></p></li>
+<li><p><a href="http://blog.s21g.com/articles/1755">公開した gem を削除する方法 - ヽ( ・∀・)ノくまくまー - s21g</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[apache_log-parserを修正してBenchmarkをとってみた]]></title>
@@ -308,146 +336,6 @@ I, [2014-12-06T17:07:53.884806 #1547]  INFO -- : this is test
 <h1>参考</h1>
 
 <p><a href="https://github.com/sonots/process_safe_logger">sonots/process_safe_logger</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[turnipを使ってシナリオテストを自動化]]></title>
-    <link href="http://takady.github.io/blog/2014/11/26/turnip/"/>
-    <updated>2014-11-26T19:17:48+09:00</updated>
-    <id>http://takady.github.io/blog/2014/11/26/turnip</id>
-    <content type="html"><![CDATA[<p><a href="https://github.com/jnicklas/turnip">turnip</a>は、シナリオテストを自然言語風のDSLで記述・実行させることができるruby製のツールです。<br/>
-ここでは、wikipediaを開いて「カブ」を検索するというシナリオを例にしてみます。</p>
-
-<h1>事前に</h1>
-
-<p>webページの操作には<a href="https://github.com/jnicklas/capybara">Capybara</a>を使います。<br/>
-今回はrackアプリではないので、HTTP通信を行うためのdriverを別途用意する必要があります。<br/>
-今回は比較的導入が楽でありHeadless(GUIを必要としない)ドライバであるPhantomJSを利用します。<br/>
-OSXであれば、下記でインストールできます。</p>
-
-<pre><code>$ brew install phantomjs
-</code></pre>
-
-<h1>準備</h1>
-
-<p>まずディレクトリを用意しましょう。<br/>
-今回は、railsなどとは組み合わせず、シンプルにturnipだけを使います。</p>
-
-<pre><code>$ mkdir turnip_sample
-$ cd !$
-
-$ bundle init
-</code></pre>
-
-<p>Gemfileに下記を記載し、<code>bundle install</code>を実行します。</p>
-
-<pre><code class="ruby">source "https://rubygems.org"
-
-gem 'turnip'
-gem 'capybara'
-gem 'poltergeist'
-</code></pre>
-
-<p>rspecとturnipの設定ファイルを用意します。</p>
-
-<pre><code>$ rspec init
-$ echo '-r turnip/rspec' &gt;&gt; .rspec
-</code></pre>
-
-<p><code>spec/turnip_helper.rb</code>を下記の内容で作成します。
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">turnip</span><span class="o">/</span><span class="n">capybara</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
-</span><span class='line'><span class="nb">require</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">capybara</span><span class="o">/</span><span class="n">poltergeist</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;Capybara.default_driver = :poltergeist&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">spec</span><span class="o">/&lt;</span><span class="n">em</span><span class="o">&gt;*/&lt;</span><span class="sr">/em&gt;steps.rb&amp;rdquo;) { |f| load f, true }</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>これで、turnipでwebアプリのシナリオテストを書く準備が整いました。</p>
-
-<h1>featureファイル</h1>
-
-<p>featureファイルを下記の内容で作成します。</p>
-
-<p>spec/features/sample.feature</p>
-
-<pre><code class="Text">Feature: 検索する
-
-  Scenario: wikipediaでカブを検索する
-    Given wikipediaトップページにアクセスする
-    When wikipediaトップページを表示する
-    Then ウィキペディアへようこそと表示されている
-    And searchにカブを入力する
-    And searchButtonボタンをクリックする
-    Then アブラナ科アブラナ属の越年草と表示されている
-</code></pre>
-
-<p>featureファイルは、いわゆるテストシナリオの定義ファイルです。<br/>
-自然言語で書ける(日本語にも対応している)ため、非エンジニアにとっても理解しやすいと思います。</p>
-
-<h1>stepファイル</h1>
-
-<p>stepファイルを下記の内容で作成します。</p>
-
-<p>spec/steps/sample_step.rb</p>
-
-<pre><code class="ruby">step 'wikipediaトップページにアクセスする' do
-  Capybara.app_host = "http://ja.wikipedia.org"
-end
-
-step 'wikipediaトップページを表示する' do
-  visit '/'
-end
-
-step %(:textと表示されている) do |text|
-  expect(page).to have_content(text)
-end
-
-step %(:fieldに:valueを入力する) do |field, value|
-  fill_in field, with: value
-end
-
-step %(:textボタンをクリックする) do |text|
-  click_button text
-end
-</code></pre>
-
-<h1>テスト実行</h1>
-
-<p>無事にテストが通過するはずです。</p>
-
-<pre><code>$ rspec
-JQMIGRATE: Logging is active
-JQMIGRATE: Logging is active
-.
-
-Finished in 5.6 seconds (files took 0.29979 seconds to load)
-1 example, 0 failures
-</code></pre>
-
-<h1>featureファイルとstepファイルの関係</h1>
-
-<p>featureファイルが自然言語風なDSLなのでイメージしにくいかもしれませんが、featureファイルから、stepファイルに定義したメソッド(実際にはstep)を呼び出している、と考えるとわかりやすいかと思います。<br/>
-上記の例ですと、<br/>
-featureファイルの<code>Then ウィキペディアへようこそと表示されている</code>という記述で、stepファイルの、<code>step %(:textと表示されている)</code>のstepが呼ばれます。<br/>
-<code>:text</code>とすることで、そこに入る文字列を動的に指定出来て汎用的になります。</p>
-
-<h1>参考</h1>
-
-<p><a href="http://magazine.rubyist.net/?0042-FromCucumberToTurnip">Rubyist Magazine - エンドツーエンドテストの自動化は Cucumber から Turnip へ</a><br/>
-<a href="http://techracho.bpsinc.jp/hachi8833/2014_06_26/18068">[RSpec][Turnip] 一般的に使えるTurnipステップ集 | TechRacho</a><br/>
-<a href="http://gongo.hatenablog.com/entry/2013/05/29/223218">Turnip について (1) / まずは動かす - Thanks Driven Life</a><br/>
-<a href="http://orangain.hatenablog.com/entry/turnip">Ruby製アプリじゃなくてもTurnipで自動受け入れテストがしたい - orangain flavor</a><br/>
-<a href="http://qiita.com/moriyaman/items/af2a0264adbaaa0d2029">Rails + Turnip + Capybara + poltergeistでBDDテスト - Qiita</a><br/>
-<a href="http://tmpla.info/installation-of-capybara-webkit/">Capybara WebkitをCentOSで使えるようにする方法 – 日本の天ぷら情報</a><br/>
-<a href="http://qiita.com/take/items/779747e0981355e569ad">poltergeist - Capybaraを使う際に知っておきたいこと - Qiita</a></p>
 ]]></content>
   </entry>
   

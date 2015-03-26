@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-03-27T00:51:11+09:00</updated>
+  <updated>2015-03-27T01:29:13+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rubygems.orgに公開しているgemの名前を変更する]]></title>
+    <link href="http://takady.github.io/blog/2015/03/27/how-to-rename-gem/"/>
+    <updated>2015-03-27T00:56:07+09:00</updated>
+    <id>http://takady.github.io/blog/2015/03/27/how-to-rename-gem</id>
+    <content type="html"><![CDATA[<p>必要になったので調べてみた．<br/>
+結論からいうと，renameはできない．ちなみにgithubのrepositoryはrenameできる．<br/>
+調べた結果，自分は下記の方法をとった．</p>
+
+<ol>
+<li>新しい名前のgemのコードを用意する．既存repositoryをrenameする場合は，.gemspecなど漏れなく修正する．</li>
+<li>新しい名前のgemを<code>rake release</code>する．</li>
+<li><code>gem yank</code>で古い名前のgemをindexから外す．</li>
+</ol>
+
+
+<p><code>gem yank</code>してもrubygems.org上のページは残るのでその点注意．</p>
+
+<h1>参考</h1>
+
+<ul>
+<li><p><a href="http://help.rubygems.org/kb/gemcutter/removing-a-published-rubygem">Removing a published RubyGem / Gemcutter / Knowledge Base - RubyGems.org Support</a></p></li>
+<li><p><a href="http://blog.s21g.com/articles/1755">公開した gem を削除する方法 - ヽ( ・∀・)ノくまくまー - s21g</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[標準出力のjson文字列を手軽にpretty printする]]></title>
