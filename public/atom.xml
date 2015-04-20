@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-03-27T01:29:13+09:00</updated>
+  <updated>2015-04-20T18:23:49+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[tmuxにpowerlineを導入した]]></title>
+    <link href="http://takady.github.io/blog/2015/04/20/powerline-config/"/>
+    <updated>2015-04-20T16:54:18+09:00</updated>
+    <id>http://takady.github.io/blog/2015/04/20/powerline-config</id>
+    <content type="html"><![CDATA[<h1>powerlineの導入</h1>
+
+<p>下記の記事を参考にした．<br/>
+<a href="http://qiita.com/tkhr/items/8cc17c02dea1803be9c6">tmux - Powerline導入例 - Qiita</a></p>
+
+<h2>フォントが綺麗に表示されない場合</h2>
+
+<p>自分の環境では，<code>brew reinstall --powerline --vim-powerline ricty</code>でpowerline用のRictyを入れても綺麗に表示されなかったので，自分でfontを合成した．</p>
+
+<pre><code>$ git clone https://github.com/yascentur/Ricty.git
+$ cd Ricty
+
+$ git clone https://github.com/powerline/fonts.git
+
+$ wget http://sourceforge.jp/frs/redir.php\?m\=jaist\&amp;f\=%2Fmix-mplus-ipa%2F59022%2Fmigu-1m-20130617.zip -O migu-1m-20130617.zip
+$ unzip migu-1m-20130617.zip
+$ ./ricty_generator.sh fonts/Inconsolata/Inconsolata\ for\ Powerline.otf migu-1m-20130617/migu-1m-regular.ttf migu-1m-20130617/migu-1m-bold.ttf
+
+$ cp -f ./Ricty*.ttf ~/Library/Fonts
+$ fc-cache -vf
+</code></pre>
+
+<h1>カスタマイズ</h1>
+
+<p>デフォルトは水色．<br/>
+<img src="http://takady.github.io/images/powerline_config_01.png" alt="before" /></p>
+
+<p><a href="https://github.com/powerline/powerline/blob/develop/docs/source/configuration.rst">powerline/configuration.rst</a>に設定方法は書いてある．<br/>
+カスタマイズしたいconfigファイルを<code>powerline/config_files</code>から<code>~/.config/powerline</code>以下にパスそのままにコピーしてきて，それを編集する．</p>
+
+<pre><code>$ mkdir -p ~/.config/powerline/colorschemes/tmux
+$ cp -i powerline/config_files/colorschemes/tmux/default.json ~/.config/powerline/colorschemes/tmux/.
+</code></pre>
+
+<h2>~/.config/powerline/colorschemes/tmux/default.json</h2>
+
+<p>例えば色を変えてみる．<br/>
+色は<code>powerline/config_files/colors.json</code>に定義されているものも使える．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;groups&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;active_window_status&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;gray70&quot;</span><span class="p">,</span> <span class="nt">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;gray0&quot;</span><span class="p">,</span>       <span class="nt">&quot;attrs&quot;</span><span class="p">:</span> <span class="p">[]},</span>
+</span><span class='line'>    <span class="nt">&quot;window:current&quot;</span><span class="p">:</span>       <span class="p">{</span><span class="nt">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>  <span class="nt">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;brightgreen&quot;</span><span class="p">,</span> <span class="nt">&quot;attrs&quot;</span><span class="p">:</span> <span class="p">[]},</span>
+</span><span class='line'>    <span class="nt">&quot;window_name&quot;</span><span class="p">:</span>          <span class="p">{</span><span class="nt">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>  <span class="nt">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;brightgreen&quot;</span><span class="p">,</span> <span class="nt">&quot;attrs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bold&quot;</span><span class="p">]},</span>
+</span><span class='line'>    <span class="nt">&quot;session:prefix&quot;</span><span class="p">:</span>       <span class="p">{</span><span class="nt">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>  <span class="nt">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;brightgreen&quot;</span><span class="p">,</span> <span class="nt">&quot;attrs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bold&quot;</span><span class="p">]}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>修正後</h3>
+
+<p><img src="http://takady.github.io/images/powerline_config_02.png" alt="after" /></p>
+
+<h1>その他</h1>
+
+<p>ちなみに，tmuxの設定をreloadするために毎回tmuxを再起動するのは面倒なので，<code>.tmux.conf</code>に下記のように設定を再読み込みするよう定義しておくと捗る．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>bind C-r source-file &quot;${HOME}/.tmux.conf&quot;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>まとめ</h1>
+
+<p>もっとこだわるなら表示する情報とかもカスタマイズできるので，やりたくなったらやるつもり．</p>
+
+<h1>参考</h1>
+
+<ul>
+<li><a href="https://github.com/powerline/powerline/blob/develop/docs/source/configuration.rst">powerline/configuration.rst at develop · powerline/powerline</a></li>
+<li><a href="https://github.com/takady/dotfiles">takady/dotfiles</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rubygems.orgに公開しているgemの名前を変更する]]></title>

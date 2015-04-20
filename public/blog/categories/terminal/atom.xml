@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: terminal | Yuichi Takada]]></title>
+  <link href="http://takady.github.io/blog/categories/terminal/atom.xml" rel="self"/>
+  <link href="http://takady.github.io/"/>
+  <updated>2015-04-20T18:23:49+09:00</updated>
+  <id>http://takady.github.io/</id>
+  <author>
+    <name><![CDATA[Yuichi Takada]]></name>
+    <email><![CDATA[takadyuichi@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[tmuxにpowerlineを導入した]]></title>
+    <link href="http://takady.github.io/blog/2015/04/20/powerline-config/"/>
+    <updated>2015-04-20T16:54:18+09:00</updated>
+    <id>http://takady.github.io/blog/2015/04/20/powerline-config</id>
+    <content type="html"><![CDATA[<h1>powerlineの導入</h1>
+
+<p>下記の記事を参考にした．<br/>
+<a href="http://qiita.com/tkhr/items/8cc17c02dea1803be9c6">tmux - Powerline導入例 - Qiita</a></p>
+
+<h2>フォントが綺麗に表示されない場合</h2>
+
+<p>自分の環境では，<code>brew reinstall --powerline --vim-powerline ricty</code>でpowerline用のRictyを入れても綺麗に表示されなかったので，自分でfontを合成した．</p>
+
+<pre><code>$ git clone https://github.com/yascentur/Ricty.git
+$ cd Ricty
+
+$ git clone https://github.com/powerline/fonts.git
+
+$ wget http://sourceforge.jp/frs/redir.php\?m\=jaist\&amp;f\=%2Fmix-mplus-ipa%2F59022%2Fmigu-1m-20130617.zip -O migu-1m-20130617.zip
+$ unzip migu-1m-20130617.zip
+$ ./ricty_generator.sh fonts/Inconsolata/Inconsolata\ for\ Powerline.otf migu-1m-20130617/migu-1m-regular.ttf migu-1m-20130617/migu-1m-bold.ttf
+
+$ cp -f ./Ricty*.ttf ~/Library/Fonts
+$ fc-cache -vf
+</code></pre>
+
+<h1>カスタマイズ</h1>
+
+<p>デフォルトは水色．<br/>
+<img src="/images/powerline_config_01.png" alt="before" /></p>
+
+<p><a href="https://github.com/powerline/powerline/blob/develop/docs/source/configuration.rst">powerline/configuration.rst</a>に設定方法は書いてある．<br/>
+カスタマイズしたいconfigファイルを<code>powerline/config_files</code>から<code>~/.config/powerline</code>以下にパスそのままにコピーしてきて，それを編集する．</p>
+
+<pre><code>$ mkdir -p ~/.config/powerline/colorschemes/tmux
+$ cp -i powerline/config_files/colorschemes/tmux/default.json ~/.config/powerline/colorschemes/tmux/.
+</code></pre>
+
+<h2>~/.config/powerline/colorschemes/tmux/default.json</h2>
+
+<p>例えば色を変えてみる．<br/>
+色は<code>powerline/config_files/colors.json</code>に定義されているものも使える．</p>
+
+<pre><code class="json">{
+  "groups": {
+    "active_window_status": {"fg": "gray70", "bg": "gray0",       "attrs": []},
+    "window:current":       {"fg": "black",  "bg": "brightgreen", "attrs": []},
+    "window_name":          {"fg": "black",  "bg": "brightgreen", "attrs": ["bold"]},
+    "session:prefix":       {"fg": "black",  "bg": "brightgreen", "attrs": ["bold"]}
+  }
+}
+</code></pre>
+
+<h3>修正後</h3>
+
+<p><img src="/images/powerline_config_02.png" alt="after" /></p>
+
+<h1>その他</h1>
+
+<p>ちなみに，tmuxの設定をreloadするために毎回tmuxを再起動するのは面倒なので，<code>.tmux.conf</code>に下記のように設定を再読み込みするよう定義しておくと捗る．</p>
+
+<pre><code class="text">bind C-r source-file "${HOME}/.tmux.conf"
+</code></pre>
+
+<h1>まとめ</h1>
+
+<p>もっとこだわるなら表示する情報とかもカスタマイズできるので，やりたくなったらやるつもり．</p>
+
+<h1>参考</h1>
+
+<ul>
+<li><a href="https://github.com/powerline/powerline/blob/develop/docs/source/configuration.rst">powerline/configuration.rst at develop · powerline/powerline</a></li>
+<li><a href="https://github.com/takady/dotfiles">takady/dotfiles</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

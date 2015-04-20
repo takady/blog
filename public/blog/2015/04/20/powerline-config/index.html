@@ -1,0 +1,204 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>tmuxにpowerlineを導入した | Yuichi Takada</title>
+
+	<meta name="author" content="Yuichi Takada"> 
+	
+	<meta name="description" content="a weblog about Programming and Tech."> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Yuichi Takada" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><a href="/"><h1>Yuichi Takada</h1></a>
+<nav id="main-nav"></nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post"><div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-04-20T16:54:18+09:00" pubdate data-updated="true">Apr 20th, 2015</time></div>
+</div>
+
+
+	<h2 class="title">Tmuxにpowerlineを導入した</h2>
+	<div class="entry-content"><h1>powerlineの導入</h1>
+
+<p>下記の記事を参考にした．<br/>
+<a href="http://qiita.com/tkhr/items/8cc17c02dea1803be9c6">tmux - Powerline導入例 - Qiita</a></p>
+
+<h2>フォントが綺麗に表示されない場合</h2>
+
+<p>自分の環境では，<code>brew reinstall --powerline --vim-powerline ricty</code>でpowerline用のRictyを入れても綺麗に表示されなかったので，自分でfontを合成した．</p>
+
+<pre><code>$ git clone https://github.com/yascentur/Ricty.git
+$ cd Ricty
+
+$ git clone https://github.com/powerline/fonts.git
+
+$ wget http://sourceforge.jp/frs/redir.php\?m\=jaist\&amp;f\=%2Fmix-mplus-ipa%2F59022%2Fmigu-1m-20130617.zip -O migu-1m-20130617.zip
+$ unzip migu-1m-20130617.zip
+$ ./ricty_generator.sh fonts/Inconsolata/Inconsolata\ for\ Powerline.otf migu-1m-20130617/migu-1m-regular.ttf migu-1m-20130617/migu-1m-bold.ttf
+
+$ cp -f ./Ricty*.ttf ~/Library/Fonts
+$ fc-cache -vf
+</code></pre>
+
+<h1>カスタマイズ</h1>
+
+<p>デフォルトは水色．<br/>
+<img src="/images/powerline_config_01.png" alt="before" /></p>
+
+<p><a href="https://github.com/powerline/powerline/blob/develop/docs/source/configuration.rst">powerline/configuration.rst</a>に設定方法は書いてある．<br/>
+カスタマイズしたいconfigファイルを<code>powerline/config_files</code>から<code>~/.config/powerline</code>以下にパスそのままにコピーしてきて，それを編集する．</p>
+
+<pre><code>$ mkdir -p ~/.config/powerline/colorschemes/tmux
+$ cp -i powerline/config_files/colorschemes/tmux/default.json ~/.config/powerline/colorschemes/tmux/.
+</code></pre>
+
+<h2>~/.config/powerline/colorschemes/tmux/default.json</h2>
+
+<p>例えば色を変えてみる．<br/>
+色は<code>powerline/config_files/colors.json</code>に定義されているものも使える．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;groups&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;active_window_status&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;gray70&quot;</span><span class="p">,</span> <span class="nt">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;gray0&quot;</span><span class="p">,</span>       <span class="nt">&quot;attrs&quot;</span><span class="p">:</span> <span class="p">[]},</span>
+</span><span class='line'>    <span class="nt">&quot;window:current&quot;</span><span class="p">:</span>       <span class="p">{</span><span class="nt">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>  <span class="nt">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;brightgreen&quot;</span><span class="p">,</span> <span class="nt">&quot;attrs&quot;</span><span class="p">:</span> <span class="p">[]},</span>
+</span><span class='line'>    <span class="nt">&quot;window_name&quot;</span><span class="p">:</span>          <span class="p">{</span><span class="nt">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>  <span class="nt">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;brightgreen&quot;</span><span class="p">,</span> <span class="nt">&quot;attrs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bold&quot;</span><span class="p">]},</span>
+</span><span class='line'>    <span class="nt">&quot;session:prefix&quot;</span><span class="p">:</span>       <span class="p">{</span><span class="nt">&quot;fg&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>  <span class="nt">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;brightgreen&quot;</span><span class="p">,</span> <span class="nt">&quot;attrs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bold&quot;</span><span class="p">]}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>修正後</h3>
+
+<p><img src="/images/powerline_config_02.png" alt="after" /></p>
+
+<h1>その他</h1>
+
+<p>ちなみに，tmuxの設定をreloadするために毎回tmuxを再起動するのは面倒なので，<code>.tmux.conf</code>に下記のように設定を再読み込みするよう定義しておくと捗る．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>bind C-r source-file &quot;${HOME}/.tmux.conf&quot;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>まとめ</h1>
+
+<p>もっとこだわるなら表示する情報とかもカスタマイズできるので，やりたくなったらやるつもり．</p>
+
+<h1>参考</h1>
+
+<ul>
+<li><a href="https://github.com/powerline/powerline/blob/develop/docs/source/configuration.rst">powerline/configuration.rst at develop · powerline/powerline</a></li>
+<li><a href="https://github.com/takady/dotfiles">takady/dotfiles</a></li>
+</ul>
+
+</div>
+
+
+<div class="sharing">
+  
+  <div class="sns-tw">
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js  ';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+  
+  <div class="sns-hb">
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  </div>
+  
+  <div class="sns-fb">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-like" expr:data-href="data:post.url" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+  </div>
+  
+  
+</div>
+</article>
+</div>
+	<footer id="footer" class="inner"><div class="aboutme">
+<hr>
+  <div class="profile">
+    <a href="http://twitter.com/takady7"><img class="icon" src="https://ja.gravatar.com/userimage/64821088/b51b1f5635f1cdf8735a75d7787c6a20.jpeg"></a>
+
+    <h3>Yuichi Takada</h3>
+    <p><a href="http://twitter.com/takady7">@takady7</a>, a software engineer in Tokyo. Born in 1987.</p>
+
+    <div class="codes">
+      <h4>Codes</h4>
+      <div class="github"><a href="https://github.com/takady">github.com/takady</a></div>
+      <div class="rubygems"><a href="https://rubygems.org/profiles/takady">rubygems.org/takady</a></div>
+    </div>
+  </div>
+
+  <div class="float_clear"></div>
+
+</div>
+Copyright &copy; 2015
+ Yuichi Takada 
+<br>
+Powered by Octopress.
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-56996369-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</footer>
+	
+
+</body>
+</html>
