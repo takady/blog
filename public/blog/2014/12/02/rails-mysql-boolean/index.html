@@ -23,14 +23,19 @@
 
 
 <body>
-	<header id="header" class="inner"><a href="/"><h1>Yuichi Takada</h1></a>
-<nav id="main-nav"></nav>
+	<header id="header">
+<div class="inner">
+  <ul class="navigation">
+    <li><a href="/"><h1>Yuichi Takada</h1></a></li>
+    <li><a href="/" class="is-selected">Blog</a></li>
+    <li><a href="http://github.com/takady" target="blank">Github</a></li>
+  </ul>
+</div></header>
 
-
-</header>
-
-	<div id="content" class="inner"><article class="post"><div class="meta">
-	<div class="date">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Railsでmysqlのbooleanなカラムをエイリアスで扱う時の注意事</h2>
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -44,10 +49,7 @@
 
 
 <time datetime="2014-12-02T18:07:11+09:00" pubdate data-updated="true">Dec 2nd, 2014</time></div>
-</div>
-
-
-	<h2 class="title">Railsでmysqlのbooleanなカラムをエイリアスで扱う時の注意事</h2>
+	</div>
 	<div class="entry-content"><p>rails+mysqlな環境では、booleanで定義したカラムはtinyint(1)で作られ、中身はtrue/falseではなく、0/1が入る。<br/>
 そして、railsアプリケーション上でmysqlのtinyint(1)型データを扱う時、値は自動的にtrue/falseとして扱われる。<br/>
 そこまでは知っていたんだけど、<code>select('foobar_flg as fb_flg')</code>というふうに、カラム名をエイリアスして取り出すと値が0/1なのは知らなかった。</p>

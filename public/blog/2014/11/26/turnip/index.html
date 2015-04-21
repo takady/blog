@@ -23,14 +23,19 @@
 
 
 <body>
-	<header id="header" class="inner"><a href="/"><h1>Yuichi Takada</h1></a>
-<nav id="main-nav"></nav>
+	<header id="header">
+<div class="inner">
+  <ul class="navigation">
+    <li><a href="/"><h1>Yuichi Takada</h1></a></li>
+    <li><a href="/" class="is-selected">Blog</a></li>
+    <li><a href="http://github.com/takady" target="blank">Github</a></li>
+  </ul>
+</div></header>
 
-
-</header>
-
-	<div id="content" class="inner"><article class="post"><div class="meta">
-	<div class="date">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Turnipを使ってシナリオテストを自動化</h2>
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -44,10 +49,7 @@
 
 
 <time datetime="2014-11-26T19:17:48+09:00" pubdate data-updated="true">Nov 26th, 2014</time></div>
-</div>
-
-
-	<h2 class="title">Turnipを使ってシナリオテストを自動化</h2>
+	</div>
 	<div class="entry-content"><p><a href="https://github.com/jnicklas/turnip">turnip</a>は、シナリオテストを自然言語風のDSLで記述・実行させることができるruby製のツールです。<br/>
 ここでは、wikipediaを開いて「カブ」を検索するというシナリオを例にしてみます。</p>
 

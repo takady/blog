@@ -23,14 +23,19 @@
 
 
 <body>
-	<header id="header" class="inner"><a href="/"><h1>Yuichi Takada</h1></a>
-<nav id="main-nav"></nav>
+	<header id="header">
+<div class="inner">
+  <ul class="navigation">
+    <li><a href="/"><h1>Yuichi Takada</h1></a></li>
+    <li><a href="/" class="is-selected">Blog</a></li>
+    <li><a href="http://github.com/takady" target="blank">Github</a></li>
+  </ul>
+</div></header>
 
-
-</header>
-
-	<div id="content" class="inner"><article class="post"><div class="meta">
-	<div class="date">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">はじめてのcoreos/rocket</h2>
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -44,10 +49,7 @@
 
 
 <time datetime="2015-01-13T19:46:35+09:00" pubdate data-updated="true">Jan 13th, 2015</time></div>
-</div>
-
-
-	<h2 class="title">はじめてのcoreos/rocket</h2>
+	</div>
 	<div class="entry-content"><p>rocketとは, CoreOS社が開発しているDockerのalternative実装で, まだprototypeという位置づけである.<br/>
 <a href="https://github.com/coreos/rocket/blob/master/Documentation/getting-started-guide.md">rocket/getting-started-guide.md at master · coreos/rocket</a>を通して, rocketをCoreOS上で動かしてみた.</p>
 

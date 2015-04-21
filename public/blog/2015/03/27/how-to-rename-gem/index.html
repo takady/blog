@@ -23,14 +23,19 @@
 
 
 <body>
-	<header id="header" class="inner"><a href="/"><h1>Yuichi Takada</h1></a>
-<nav id="main-nav"></nav>
+	<header id="header">
+<div class="inner">
+  <ul class="navigation">
+    <li><a href="/"><h1>Yuichi Takada</h1></a></li>
+    <li><a href="/" class="is-selected">Blog</a></li>
+    <li><a href="http://github.com/takady" target="blank">Github</a></li>
+  </ul>
+</div></header>
 
-
-</header>
-
-	<div id="content" class="inner"><article class="post"><div class="meta">
-	<div class="date">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">rubygems.orgに公開しているgemの名前を変更する</h2>
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -44,10 +49,7 @@
 
 
 <time datetime="2015-03-27T00:56:07+09:00" pubdate data-updated="true">Mar 27th, 2015</time></div>
-</div>
-
-
-	<h2 class="title">rubygems.orgに公開しているgemの名前を変更する</h2>
+	</div>
 	<div class="entry-content"><p>必要になったので調べてみた．<br/>
 結論からいうと，renameはできない．ちなみにgithubのrepositoryはrenameできる．<br/>
 調べた結果，自分は下記の方法をとった．</p>

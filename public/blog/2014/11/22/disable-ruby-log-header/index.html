@@ -23,14 +23,19 @@
 
 
 <body>
-	<header id="header" class="inner"><a href="/"><h1>Yuichi Takada</h1></a>
-<nav id="main-nav"></nav>
+	<header id="header">
+<div class="inner">
+  <ul class="navigation">
+    <li><a href="/"><h1>Yuichi Takada</h1></a></li>
+    <li><a href="/" class="is-selected">Blog</a></li>
+    <li><a href="http://github.com/takady" target="blank">Github</a></li>
+  </ul>
+</div></header>
 
-
-</header>
-
-	<div id="content" class="inner"><article class="post"><div class="meta">
-	<div class="date">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Rubyのloggerでlogのヘッダを出力しない</h2>
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -44,10 +49,7 @@
 
 
 <time datetime="2014-11-22T13:11:18+09:00" pubdate data-updated="true">Nov 22nd, 2014</time></div>
-</div>
-
-
-	<h2 class="title">Rubyのloggerでlogのヘッダを出力しない</h2>
+	</div>
 	<div class="entry-content"><p>rubyのLoggerを使っていると、Logger.newした際に生成されるlogファイルには、デフォルトで下記のようなヘッダが出力される。<br/>
 <code># Logfile created on 2014-11-22 13:15:26 +0900 by logger.rb/44203</code></p>
 

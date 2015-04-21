@@ -23,14 +23,19 @@
 
 
 <body>
-	<header id="header" class="inner"><a href="/"><h1>Yuichi Takada</h1></a>
-<nav id="main-nav"></nav>
+	<header id="header">
+<div class="inner">
+  <ul class="navigation">
+    <li><a href="/"><h1>Yuichi Takada</h1></a></li>
+    <li><a href="/" class="is-selected">Blog</a></li>
+    <li><a href="http://github.com/takady" target="blank">Github</a></li>
+  </ul>
+</div></header>
 
-
-</header>
-
-	<div id="content" class="inner"><article class="post"><div class="meta">
-	<div class="date">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">標準出力のjson文字列を手軽にpretty Printする</h2>
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -44,10 +49,7 @@
 
 
 <time datetime="2015-03-27T00:41:40+09:00" pubdate data-updated="true">Mar 27th, 2015</time></div>
-</div>
-
-
-	<h2 class="title">標準出力のjson文字列を手軽にpretty Printする</h2>
+	</div>
 	<div class="entry-content"><p><code>jq</code>使えばいいんですが，入ってない時とかに．</p>
 
 <pre><code>$ echo '{ "foo": "bar", "test": 10 }' | python -mjson.tool
