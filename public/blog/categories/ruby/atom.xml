@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-04-21T17:27:07+09:00</updated>
+  <updated>2015-04-24T14:14:17+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[bundle openでtmuxのpaneを開く]]></title>
+    <link href="http://takady.github.io/blog/2015/04/24/bundle-open-tmux/"/>
+    <updated>2015-04-24T13:11:11+09:00</updated>
+    <id>http://takady.github.io/blog/2015/04/24/bundle-open-tmux</id>
+    <content type="html"><![CDATA[<p><code>bundle open</code>でgemのソースをエディタで開いたり，<code>bundle show</code>でgemのパスを見たりすることができるので，gemの挙動を知りたくてコードを見たい時にこれらのコマンドをよく使ってる．<br/>
+便利なんだけど，gemのディレクトリがtmuxのペインで開いてくれるともっと使いやすいと思って，やってみた．</p>
+
+<pre><code class="sh">export BUNDLER_EDITOR="tmux split-window -c"
+</code></pre>
+
+<p>上記を<code>~/.zshrc</code>あたりに定義して，コマンドラインで<code>bundle open</code>を実行すれば，tmuxのpaneが開いてそのgemのディレクトリを見ることができる．</p>
+
+<pre><code>$ bundle open activerecord
+</code></pre>
+
+<h1>bundle openを上書きしたくない場合</h1>
+
+<p><code>bundle open</code>の挙動はそのまま残したいという場合には，<code>BUNDLER_EDITOR</code>で設定するのではなく，下記のような関数を別途定義して使うと良い．</p>
+
+<pre><code class="sh">function bundle_open_tmux() {
+    if [ -n "$1" ]; then
+        local dir=$(bundle show "$1")
+        tmux split-window -c "$dir"
+    fi
+}
+</code></pre>
+
+<p>下記のように実行すると，同じように動作する．</p>
+
+<pre><code>$ bundle_open_tmux activerecord
+</code></pre>
+
+<h1>参考</h1>
+
+<ul>
+<li><a href="http://rebuild.fm/41/">Rebuild: 41: Kids These Days Don&rsquo;t Know Shell (Naoya Ito)</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rubygems.orgに公開しているgemの名前を変更する]]></title>
@@ -281,61 +323,6 @@ Facebookでは上記フローだが、twitterとかgithubとか他のサービ�
 <a href="http://rebuild.fm/43/">Rebuild: 43: Kent is More Professional (Kenn Ejima)</a><br/>
 <a href="https://github.com/nov/fb_graph/wiki">Home · nov/fb_graph Wiki</a><br/>
 <a href="http://morizyun.github.io/blog/facebook-event-api-ruby-fb_graph/">公開中のFacebook EventをGraph APIから取得する - 酒と泪とRubyとRailsと</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rubyのloggerをnewした後にログファイルを削除するとどうなるのか]]></title>
-    <link href="http://takady.github.io/blog/2014/12/07/file-safe-logger/"/>
-    <updated>2014-12-07T18:01:52+09:00</updated>
-    <id>http://takady.github.io/blog/2014/12/07/file-safe-logger</id>
-    <content type="html"><![CDATA[<p><strong>この投稿は<a href="http://qiita.com/advent-calendar/2014/ruby">Ruby Advent Calendar 2014</a>の7日目の記事です。</strong></p>
-
-<p>rubyには標準添付ライブラリにloggerクラスがある。<br/>
-そのloggerクラス、newした後に出力先のログファイルが削除された時の挙動について調べた。<br/>
-そして、<a href="https://github.com/takady/file_safe_logger">file_safe_logger</a>というgemを作った。</p>
-
-<h1>検証</h1>
-
-<p>下記のようにして、<code>Logger.new</code>と<code>logger.info</code>の間でファイルを削除してみる</p>
-
-<pre><code class="ruby">require 'logger'
-require 'fileutils'
-
-logfile = 'test.log'
-logger = Logger.new(logfile)
-FileUtils.rm(logfile)
-logger.info('this is test')
-</code></pre>
-
-<p>これは、結果としてはエラーにはならず正常終了するが、test.logというファイルはカレントディレクトリに存在せず、もちろん<code>this is test</code>というlogも残っていない。</p>
-
-<h1>FileSafeLogger</h1>
-
-<p>ファイルが削除されるとlogging出来ないというのが困る時がある。<br/>
-なので、<a href="https://github.com/takady/file_safe_logger">file_safe_logger</a>というgemを作った。<br/>
-やってることはいたって単純で、<a href="https://github.com/ruby/ruby/blob/trunk/lib/logger.rb#L593-L612">Logger::LogDevice.#write</a>メソッドをoverrideして、ファイルが存在しない場合は作成しているだけである。<br/>
-<a href="https://github.com/takady/file_safe_logger">file_safe_logger</a>を使って、先ほどのlogging処理と同じ処理をやってみる。</p>
-
-<pre><code class="ruby">require 'file_safe_logger'
-require 'fileutils'
-
-logfile = 'test.log'
-logger = FileSafeLogger.new(logfile)
-FileUtils.rm(logfile)
-logger.info('this is test')
-</code></pre>
-
-<p>これの実行後、カレントディレクトリには<code>test.log</code>が存在し、下記のようにlogが書き出されている。</p>
-
-<pre><code>$ cat test.log
-# Logfile created on 2014-12-06 17:07:53 +0900 by logger.rb/44203
-I, [2014-12-06T17:07:53.884806 #1547]  INFO -- : this is test
-</code></pre>
-
-<h1>参考</h1>
-
-<p><a href="https://github.com/sonots/process_safe_logger">sonots/process_safe_logger</a></p>
 ]]></content>
   </entry>
   

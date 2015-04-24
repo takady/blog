@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-04-21T17:27:07+09:00</updated>
+  <updated>2015-04-24T14:14:17+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[bundle openでtmuxのpaneを開く]]></title>
+    <link href="http://takady.github.io/blog/2015/04/24/bundle-open-tmux/"/>
+    <updated>2015-04-24T13:11:11+09:00</updated>
+    <id>http://takady.github.io/blog/2015/04/24/bundle-open-tmux</id>
+    <content type="html"><![CDATA[<p><code>bundle open</code>でgemのソースをエディタで開いたり，<code>bundle show</code>でgemのパスを見たりすることができるので，gemの挙動を知りたくてコードを見たい時にこれらのコマンドをよく使ってる．<br/>
+便利なんだけど，gemのディレクトリがtmuxのペインで開いてくれるともっと使いやすいと思って，やってみた．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">BUNDLER_EDITOR</span><span class="o">=</span><span class="s2">&quot;tmux split-window -c&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記を<code>~/.zshrc</code>あたりに定義して，コマンドラインで<code>bundle open</code>を実行すれば，tmuxのpaneが開いてそのgemのディレクトリを見ることができる．</p>
+
+<pre><code>$ bundle open activerecord
+</code></pre>
+
+<h1>bundle openを上書きしたくない場合</h1>
+
+<p><code>bundle open</code>の挙動はそのまま残したいという場合には，<code>BUNDLER_EDITOR</code>で設定するのではなく，下記のような関数を別途定義して使うと良い．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="k">function</span> bundle_open_tmux<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;$1&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span class='line'>        <span class="nb">local </span><span class="nv">dir</span><span class="o">=</span><span class="k">$(</span>bundle show <span class="s2">&quot;$1&quot;</span><span class="k">)</span>
+</span><span class='line'>        tmux split-window -c <span class="s2">&quot;$dir&quot;</span>
+</span><span class='line'>    <span class="k">fi</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下記のように実行すると，同じように動作する．</p>
+
+<pre><code>$ bundle_open_tmux activerecord
+</code></pre>
+
+<h1>参考</h1>
+
+<ul>
+<li><a href="http://rebuild.fm/41/">Rebuild: 41: Kids These Days Don&rsquo;t Know Shell (Naoya Ito)</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[tmuxにpowerlineを導入した]]></title>

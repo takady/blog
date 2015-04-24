@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tmux | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/tmux/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-04-21T17:27:07+09:00</updated>
+  <updated>2015-04-24T14:14:17+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[bundle openでtmuxのpaneを開く]]></title>
+    <link href="http://takady.github.io/blog/2015/04/24/bundle-open-tmux/"/>
+    <updated>2015-04-24T13:11:11+09:00</updated>
+    <id>http://takady.github.io/blog/2015/04/24/bundle-open-tmux</id>
+    <content type="html"><![CDATA[<p><code>bundle open</code>でgemのソースをエディタで開いたり，<code>bundle show</code>でgemのパスを見たりすることができるので，gemの挙動を知りたくてコードを見たい時にこれらのコマンドをよく使ってる．<br/>
+便利なんだけど，gemのディレクトリがtmuxのペインで開いてくれるともっと使いやすいと思って，やってみた．</p>
+
+<pre><code class="sh">export BUNDLER_EDITOR="tmux split-window -c"
+</code></pre>
+
+<p>上記を<code>~/.zshrc</code>あたりに定義して，コマンドラインで<code>bundle open</code>を実行すれば，tmuxのpaneが開いてそのgemのディレクトリを見ることができる．</p>
+
+<pre><code>$ bundle open activerecord
+</code></pre>
+
+<h1>bundle openを上書きしたくない場合</h1>
+
+<p><code>bundle open</code>の挙動はそのまま残したいという場合には，<code>BUNDLER_EDITOR</code>で設定するのではなく，下記のような関数を別途定義して使うと良い．</p>
+
+<pre><code class="sh">function bundle_open_tmux() {
+    if [ -n "$1" ]; then
+        local dir=$(bundle show "$1")
+        tmux split-window -c "$dir"
+    fi
+}
+</code></pre>
+
+<p>下記のように実行すると，同じように動作する．</p>
+
+<pre><code>$ bundle_open_tmux activerecord
+</code></pre>
+
+<h1>参考</h1>
+
+<ul>
+<li><a href="http://rebuild.fm/41/">Rebuild: 41: Kids These Days Don&rsquo;t Know Shell (Naoya Ito)</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[tmuxにpowerlineを導入した]]></title>
