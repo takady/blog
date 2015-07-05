@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-04-24T14:14:17+09:00</updated>
+  <updated>2015-07-05T22:30:34+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[転職して１ヶ月経った]]></title>
+    <link href="http://takady.github.io/blog/2015/07/05/join-a-new-company-and-past-a-month/"/>
+    <updated>2015-07-05T20:37:26+09:00</updated>
+    <id>http://takady.github.io/blog/2015/07/05/join-a-new-company-and-past-a-month</id>
+    <content type="html"><![CDATA[<p>5月12日に転職して、1ヶ月くらい経った。<br/>
+一万人規模の会社から、百人規模の会社に来たので、色々なものごとの距離感の近さが新鮮に感じられる。<br/>
+さすがのスピード感で、入社して3日目から本格的にPRを出すなどの開発に入り、それから毎日頑張ってついて行っている間に1ヶ月経ったという感じだった。<br/>
+周囲のメンバーと切磋琢磨しながら、自分もサービスに貢献していきたいと思う。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[bundle openでtmuxのpaneを開く]]></title>
