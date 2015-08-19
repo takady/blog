@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-07-05T22:30:34+09:00</updated>
+  <updated>2015-08-19T23:52:48+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rebuild Meetup に行ってきた]]></title>
+    <link href="http://takady.github.io/blog/2015/08/19/rebuild-meetup/"/>
+    <updated>2015-08-19T23:35:36+09:00</updated>
+    <id>http://takady.github.io/blog/2015/08/19/rebuild-meetup</id>
+    <content type="html"><![CDATA[<p><a href="http://connpass.com/event/18099/">Rebuild Meetup 2015 - connpass</a></p>
+
+<p>昨年のはじめに仙台に出張してる時から rebuild.fm 聴くようになって、プログラミング好きになって、仕事でも web アプリ書けるところに異動して、その後今の会社に転職したので、感慨深かった。</p>
+
+<blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">Matz きたー <a href="https://twitter.com/hashtag/rebuildfm?src=hash">#rebuildfm</a> <a href="http://t.co/nPX9OxAsh9">pic.twitter.com/nPX9OxAsh9</a></p>&mdash; takady (@takady7) <a href="https://twitter.com/takady7/status/633967560505978880">2015, 8月 19</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[転職して１ヶ月経った]]></title>
