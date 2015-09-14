@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-08-30T13:56:04+09:00</updated>
+  <updated>2015-09-15T00:15:28+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[個人情報保護士認定試験を受験した]]></title>
+    <link href="http://takady.github.io/blog/2015/09/14/kojin-joho-hogo-shi/"/>
+    <updated>2015-09-14T22:59:40+09:00</updated>
+    <id>http://takady.github.io/blog/2015/09/14/kojin-joho-hogo-shi</id>
+    <content type="html"><![CDATA[<p><a href="http://www.joho-gakushu.or.jp/piip/piip.html">個人情報保護士認定試験</a></p>
+
+<p>会社で必要になったので、9/13(日)に受験した。<br/>
+下記の流れで2週間ほど勉強した。<br/>
+<br></p>
+
+<ol>
+<li><a href="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=4820748866&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr">公式テキスト</a>を読む</li>
+<li><a href="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=4820748408&amp;ref=tf_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr">公式精選過去問題集</a>を解く</li>
+<li>協会から送られてくる前回テストの問題を解く</li>
+</ol>
+
+
+<h1>公式テキストを読む</h1>
+
+<p>僕はただ読むだけでは覚えられなかったので、大事そうな所や覚えにくい所はノートに書いた。<br/>
+章末の「過去問チェック」まで解いたら、公式精選過去問集へ。</p>
+
+<h1>公式精選過去問集を解く</h1>
+
+<p>公式テキストで読んだ章に対応する問題を解く。<br/>
+この問題集は、問題と解答が別の冊子に分かれてなくて、1問づつ問題と答えと解説が書いてあるので、使いやすかった。<br/>
+間違えたり理解が完全でない問題は後で繰り返し解くために印を付けておいた。</p>
+
+<h1>前回テストの問題を解く</h1>
+
+<p>試験の1週間前くらいに協会から家に届いた。<br/>
+試験前日に、時間を測って本番を想定して解いた。<br/>
+この時点でちょうど8割くらい取れてる感じだった。<br/>
+120分の試験時間に対して、90分くらいで解き終わった。</p>
+
+<h1>当日</h1>
+
+<p>問題文の日本語をよく読むことで解ける問題も結構あると感じていたので、落ち着いて解答した。<br/>
+120分の試験時間に対して、70分くらいで終わって、残り時間は見直しを入念にした。</p>
+
+<h1>感想</h1>
+
+<p>試験は120分100問で、課題1が40問、課題2が60問ある。<br/>
+課題1は、個人情報保護の総論といって、個人情報保護法とかJIS Q 15001 とかの理解度を問われるんだが、これが結構自分は難しかった。<br/>
+課題2は、個人情報保護の対策で、自分がソフトウェアエンジニアなのもあると思うが、一般的な会社員としての知識で解ける問題が結構ある印象だった。</p>
+
+<p><br>
+<br>
+<br></p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4820748866&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4820748408&ref=tf_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[YAPC::Asia 2015 に行ってきた]]></title>
@@ -1663,16 +1726,6 @@ config.ruに下記を追記する。</p>
 <p><a href="http://blog.livedoor.jp/sonots/archives/38927788.html">[Ruby] 例えば、Rails の標準ログを止める - sonots:blog</a><br/>
 <a href="http://railsdoc.eiel.info/active_support/logger/">RailsDoc - ActiveSupport::Logger</a><br/>
 <a href="http://mitsu877.hatenablog.com/entry/2014/11/15/193547">【Rails】バッチの実行ログを専用のログファイルと標準出力の両方に出す - おどるダメ人間</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress]]></title>
-    <link href="http://takady.github.io/blog/2014/11/15/fist-of-octopress/"/>
-    <updated>2014-11-15T15:52:35+09:00</updated>
-    <id>http://takady.github.io/blog/2014/11/15/fist-of-octopress</id>
-    <content type="html"><![CDATA[<p>今更ながら、octopress使ってみる。<br/>
-markdownで書いて、投稿がterminalからできるってのが良いです。</p>
 ]]></content>
   </entry>
   
