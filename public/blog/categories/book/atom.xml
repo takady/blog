@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: book | Yuichi Takada]]></title>
+  <link href="http://takady.github.io/blog/categories/book/atom.xml" rel="self"/>
+  <link href="http://takady.github.io/"/>
+  <updated>2015-09-24T22:41:34+09:00</updated>
+  <id>http://takady.github.io/</id>
+  <author>
+    <name><![CDATA[Yuichi Takada]]></name>
+    <email><![CDATA[takadyuichi@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[WEB+DB PRESS plus の DB 本 3冊を読んで index を学んだ]]></title>
+    <link href="http://takady.github.io/blog/2015/09/24/read-books-about-database/"/>
+    <updated>2015-09-24T18:43:39+09:00</updated>
+    <id>http://takady.github.io/blog/2015/09/24/read-books-about-database</id>
+    <content type="html"><![CDATA[<p>シルバーウィークに、この3冊を読んだ。</p>
+
+<ul>
+<li><p><a href="http://www.amazon.co.jp/gp/product/4774150207/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774150207&amp;linkCode=as2&amp;tag=takadayuichi-22">Webエンジニアのための データベース技術[実践]入門 (Software Design plus)</a></p>
+
+<ul>
+<li>RDBMS としては mysql を題材にしている。</li>
+<li>インデックスから my.cnf の項目の説明や mysql のソースコードを読む所まで、 mysql をメインに書かれている。</li>
+</ul>
+</li>
+<li><p><a href="http://www.amazon.co.jp/gp/product/4774171972/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774171972&amp;linkCode=as2&amp;tag=takadayuichi-22">理論から学ぶデータベース実践入門 ~リレーショナルモデルによる効率的なSQL (WEB+DB PRESS plus)</a></p>
+
+<ul>
+<li>RDBMS の構造や設計についても書かれていて、正規化理論や NULL について、またインデックスの設計戦略までカバーされている。</li>
+<li>個別の RDBMS 製品に偏った記載はほぼ無い。</li>
+<li>著者は、<a href="http://nippondanji.blogspot.jp/">漢(オトコ)のコンピュータ道</a> の人。</li>
+</ul>
+</li>
+<li><p><a href="http://www.amazon.co.jp/gp/product/4774173010/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774173010&amp;linkCode=as2&amp;tag=takadayuichi-22">SQL実践入門──高速でわかりやすいクエリの書き方 (WEB+DB PRESS plus)</a></p>
+
+<ul>
+<li>SQL と実行計画を主軸に、効果的な SQL の書き方、実行計画の見方などについて書かれている。</li>
+<li>クエリと実行計画のサンプルには、 Oracle と PostgresQL のものが使われている。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>特に index について知りたかったのでその辺まとめとく。</p>
+
+<h1>B+Tree</h1>
+
+<p>RDBMS の index で最も使われている。<br/>
+データ構造が木みたいに、ルート、ブランチ、リーフから成っている。<br/>
+B+Tree は B-Tree と違って、必ずリーフノードに値を持つ。ブランチノードがコンパクトになり、検索の効率が良いらしい。</p>
+
+<h1>index を貼ることのデメリット</h1>
+
+<ul>
+<li>更新処理が遅くなる</li>
+<li>データ量が増える</li>
+</ul>
+
+
+<h1>index をはらない方が良いケース</h1>
+
+<ul>
+<li><p>データ件数が少ないテーブル</p>
+
+<ul>
+<li>index を参照してからデータ領域を参照することになるので、データ件数が少ない場合は逆にテーブルフルスキャンの方が速い。</li>
+</ul>
+</li>
+<li><p>値のばらつきが少ないカラム</p>
+
+<ul>
+<li>boolean なカラムのように取りうる値にバラつきが少ないカラムや、大半のレコードに同じ値が入っているカラムには、 index を貼っても効果が少ない。逆に、1件に絞り込めるような値が入っているカラムは、インデックスが有効に作用する。</li>
+<li>値のバラつきのことをカーディナリティ（集合の濃度）という。</li>
+</ul>
+</li>
+</ul>
+
+
+<h1>index は前方一致に対してのみ有効</h1>
+
+<p>これは index 有効。</p>
+
+<pre><code class="sql">SELECT * WHERE name LIKE '高田%';
+</code></pre>
+
+<p>これは index 効かない。</p>
+
+<pre><code class="sql">SELECT * WHERE name LIKE '%祐一';
+</code></pre>
+
+<h1>演算や関数にかけてしまうと index は効かない</h1>
+
+<p>col1 に index を貼っていても、下記のクエリは index が効かない。</p>
+
+<pre><code class="sql">SELECT * WHERE col1 * 10 &gt; 123;
+</code></pre>
+
+<p>index を効かせたい場合は、こうする。</p>
+
+<pre><code class="sql">SELECT * WHERE col1 &gt; 123 / 10;
+</code></pre>
+
+<h1>マルチカラムインデックスでは、カラムの順番も意味がある</h1>
+
+<p>下記のクエリに対して効果的な index は、(col1, col2) ではなく (col2, col1) な index である。<br/>
+index が前方一致な事を思い出す。</p>
+
+<pre><code class="sql">SELECT * WHERE col1 &gt; 100 AND col2 = 3;
+</code></pre>
+
+<h1>index オンリースキャン</h1>
+
+<p>index を貼ると、index を見てから、データ領域を参照する事になる。<br/>
+しかし、index の参照だけで取得できるようなクエリだと、データ領域への参照が必要無いのでさらに高速になる。<br/>
+(col1, col2) というindex を貼ってあるテーブル tbl に対して、下記のクエリを発行すると、index の参照だけで済む。</p>
+
+<pre><code class="sql">SELECT col1, col2 FROM tbl WHERE col1 = 1 AND col2 &gt; 100;
+</code></pre>
+
+<p>集計関数の場合も、うまく使えば index だけで済ませられる。</p>
+
+<pre><code class="sql">SELECT COUNT(1) FROM tbl WHERE col1 = 1 AND col2 &gt; 100;
+</code></pre>
+
+<h1>B+Tree はキーの順にソートされて格納されている</h1>
+
+<p>index のキーはソートされているので、name に index があるテーブルに、下記のようなクエリを発行すると範囲検索とソートの両方にインデックスが使われるので高速。</p>
+
+<pre><code class="sql">SELECT * FROM tbl WHERE name LIKE '高田%' ORDER BY name;
+</code></pre>
+
+<h1>まとめ</h1>
+
+<p>index という概念が導入される前の hiveQL を長年使っていたので、 SQL は書けるけど index に対しては理解弱かったので、勉強になった。<br/>
+頭の中で B+Tree をイメージすると、効果的な index をイメージしやすい気がする。<br/>
+あと、前方一致の特徴などからも やはり index は、本の索引をイメージするとわかりやすい。</p>
+
+<p><br>
+<br>
+<br></p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4774150207&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4774171972&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4774173010&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

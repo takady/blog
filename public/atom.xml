@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-09-15T00:15:28+09:00</updated>
+  <updated>2015-09-24T22:41:34+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,170 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[WEB+DB PRESS plus の DB 本 3冊を読んで index を学んだ]]></title>
+    <link href="http://takady.github.io/blog/2015/09/24/read-books-about-database/"/>
+    <updated>2015-09-24T18:43:39+09:00</updated>
+    <id>http://takady.github.io/blog/2015/09/24/read-books-about-database</id>
+    <content type="html"><![CDATA[<p>シルバーウィークに、この3冊を読んだ。</p>
+
+<ul>
+<li><p><a href="http://www.amazon.co.jp/gp/product/4774150207/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774150207&amp;linkCode=as2&amp;tag=takadayuichi-22">Webエンジニアのための データベース技術[実践]入門 (Software Design plus)</a></p>
+
+<ul>
+<li>RDBMS としては mysql を題材にしている。</li>
+<li>インデックスから my.cnf の項目の説明や mysql のソースコードを読む所まで、 mysql をメインに書かれている。</li>
+</ul>
+</li>
+<li><p><a href="http://www.amazon.co.jp/gp/product/4774171972/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774171972&amp;linkCode=as2&amp;tag=takadayuichi-22">理論から学ぶデータベース実践入門 ~リレーショナルモデルによる効率的なSQL (WEB+DB PRESS plus)</a></p>
+
+<ul>
+<li>RDBMS の構造や設計についても書かれていて、正規化理論や NULL について、またインデックスの設計戦略までカバーされている。</li>
+<li>個別の RDBMS 製品に偏った記載はほぼ無い。</li>
+<li>著者は、<a href="http://nippondanji.blogspot.jp/">漢(オトコ)のコンピュータ道</a> の人。</li>
+</ul>
+</li>
+<li><p><a href="http://www.amazon.co.jp/gp/product/4774173010/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=247&amp;creative=1211&amp;creativeASIN=4774173010&amp;linkCode=as2&amp;tag=takadayuichi-22">SQL実践入門──高速でわかりやすいクエリの書き方 (WEB+DB PRESS plus)</a></p>
+
+<ul>
+<li>SQL と実行計画を主軸に、効果的な SQL の書き方、実行計画の見方などについて書かれている。</li>
+<li>クエリと実行計画のサンプルには、 Oracle と PostgresQL のものが使われている。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>特に index について知りたかったのでその辺まとめとく。</p>
+
+<h1>B+Tree</h1>
+
+<p>RDBMS の index で最も使われている。<br/>
+データ構造が木みたいに、ルート、ブランチ、リーフから成っている。<br/>
+B+Tree は B-Tree と違って、必ずリーフノードに値を持つ。ブランチノードがコンパクトになり、検索の効率が良いらしい。</p>
+
+<h1>index を貼ることのデメリット</h1>
+
+<ul>
+<li>更新処理が遅くなる</li>
+<li>データ量が増える</li>
+</ul>
+
+
+<h1>index をはらない方が良いケース</h1>
+
+<ul>
+<li><p>データ件数が少ないテーブル</p>
+
+<ul>
+<li>index を参照してからデータ領域を参照することになるので、データ件数が少ない場合は逆にテーブルフルスキャンの方が速い。</li>
+</ul>
+</li>
+<li><p>値のばらつきが少ないカラム</p>
+
+<ul>
+<li>boolean なカラムのように取りうる値にバラつきが少ないカラムや、大半のレコードに同じ値が入っているカラムには、 index を貼っても効果が少ない。逆に、1件に絞り込めるような値が入っているカラムは、インデックスが有効に作用する。</li>
+<li>値のバラつきのことをカーディナリティ（集合の濃度）という。</li>
+</ul>
+</li>
+</ul>
+
+
+<h1>index は前方一致に対してのみ有効</h1>
+
+<p>これは index 有効。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">LIKE</span> <span class="s1">&#39;高田%&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これは index 効かない。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">LIKE</span> <span class="s1">&#39;%祐一&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>演算や関数にかけてしまうと index は効かない</h1>
+
+<p>col1 に index を貼っていても、下記のクエリは index が効かない。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">WHERE</span> <span class="n">col1</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="mi">123</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>index を効かせたい場合は、こうする。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">WHERE</span> <span class="n">col1</span> <span class="o">&gt;</span> <span class="mi">123</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>マルチカラムインデックスでは、カラムの順番も意味がある</h1>
+
+<p>下記のクエリに対して効果的な index は、(col1, col2) ではなく (col2, col1) な index である。<br/>
+index が前方一致な事を思い出す。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">WHERE</span> <span class="n">col1</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="k">AND</span> <span class="n">col2</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>index オンリースキャン</h1>
+
+<p>index を貼ると、index を見てから、データ領域を参照する事になる。<br/>
+しかし、index の参照だけで取得できるようなクエリだと、データ領域への参照が必要無いのでさらに高速になる。<br/>
+(col1, col2) というindex を貼ってあるテーブル tbl に対して、下記のクエリを発行すると、index の参照だけで済む。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">col1</span><span class="p">,</span> <span class="n">col2</span> <span class="k">FROM</span> <span class="n">tbl</span> <span class="k">WHERE</span> <span class="n">col1</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="n">col2</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>集計関数の場合も、うまく使えば index だけで済ませられる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">tbl</span> <span class="k">WHERE</span> <span class="n">col1</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">AND</span> <span class="n">col2</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>B+Tree はキーの順にソートされて格納されている</h1>
+
+<p>index のキーはソートされているので、name に index があるテーブルに、下記のようなクエリを発行すると範囲検索とソートの両方にインデックスが使われるので高速。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tbl</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">LIKE</span> <span class="s1">&#39;高田%&#39;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">name</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>まとめ</h1>
+
+<p>index という概念が導入される前の hiveQL を長年使っていたので、 SQL は書けるけど index に対しては理解弱かったので、勉強になった。<br/>
+頭の中で B+Tree をイメージすると、効果的な index をイメージしやすい気がする。<br/>
+あと、前方一致の特徴などからも やはり index は、本の索引をイメージするとわかりやすい。</p>
+
+<p><br>
+<br>
+<br></p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4774150207&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4774171972&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4774173010&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[個人情報保護士認定試験を受験した]]></title>
@@ -1665,67 +1829,6 @@ featureファイルの<code>Then ウィキペディアへようこそと表示�
 <h1>参考</h1>
 
 <p><a href="http://stackoverflow.com/questions/4096336/can-i-disable-the-log-header-for-ruby-logger">Can I disable the log header for ruby logger? - Stack Overflow</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[railsで、複数の出力先にlogを出力する]]></title>
-    <link href="http://takady.github.io/blog/2014/11/21/rails-logger-broadcast/"/>
-    <updated>2014-11-21T18:57:07+09:00</updated>
-    <id>http://takady.github.io/blog/2014/11/21/rails-logger-broadcast</id>
-    <content type="html"><![CDATA[<p>railsアプリケーションで、error以上のレベルのログだけ、２箇所にログを出力したいと思った。</p>
-
-<h1>前提</h1>
-
-<p>ruby 2.1.2<br/>
-rails 4.1.4</p>
-
-<h1>方法</h1>
-
-<p>まず、複数の出力先にロギングするには、<a href="https://github.com/rails/rails/blob/master/activesupport/lib/active_support/logger.rb#L10-L42">ActiveSupport::Logger.#broadcast</a>というメソッドが使える。<br/>
-config/application.rbのMyapp::Applicationクラス内に下記のように書いてみた。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">logger</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">paths</span><span class="o">[</span><span class="s2">&quot;log&quot;</span><span class="o">].</span><span class="n">first</span><span class="p">)</span>
-</span><span class='line'><span class="n">error_logger</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;log/error.log&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">error_logger</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="no">Logger</span><span class="o">::</span><span class="no">ERROR</span>
-</span><span class='line'><span class="n">logger</span><span class="o">.</span><span class="n">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">error_logger</span><span class="p">)</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>これで、複数箇所にログが出力されるようにはなった。<br/>
-しかし、今回やりたかったのは、<strong>ERROR以上の時だけ</strong>２箇所にロギングしたいというもので、上記のようにconfig/application.rbでextendした場合、error_loggerのlevelをERRORにセットしていても、Rails.loggerのlevelと同じlevelでのloggingになってしまう。<br/>
-全く同じエラーログを複数箇所に吐かせたいというだけであれば、上記の方法で良いと思う。(その際、上記の<code>error_logger.level = Logger::ERROR</code>は意味が無いので消した方が良い)</p>
-
-<p>error_logger.levelの指定が効くようにするには、<code>run Rails.application</code>よりも後で、error_loggerをRails.loggerにextendすると良い。<br/>
-config.ruに下記を追記する。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">run</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">error_logger</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;log/error.log&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">error_logger</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="no">Logger</span><span class="o">::</span><span class="no">ERROR</span>
-</span><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">extend</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Logger</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">error_logger</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>これで、log/error.logへは、ERRORレベル以上のログだけが出力されるようになった。<br/>
-もちろん、log/development.logには、これまでどおりDEBUGレベルまで含めた全てのlogが出ている。</p>
-
-<h1>参考</h1>
-
-<p><a href="http://blog.livedoor.jp/sonots/archives/38927788.html">[Ruby] 例えば、Rails の標準ログを止める - sonots:blog</a><br/>
-<a href="http://railsdoc.eiel.info/active_support/logger/">RailsDoc - ActiveSupport::Logger</a><br/>
-<a href="http://mitsu877.hatenablog.com/entry/2014/11/15/193547">【Rails】バッチの実行ログを専用のログファイルと標準出力の両方に出す - おどるダメ人間</a></p>
 ]]></content>
   </entry>
   
