@@ -96,3 +96,10 @@ nginx の access.log を解析したところトップページが重いとい�
 ちなみに土曜日の予選には131組371人が参加してたらしい。  
 運営の方々、決勝も残っていますが、ひとまずお疲れ様でした！ありがとうございました！  
 [@tatsuyaoiw](https://twitter.com/tatsuyaoiw) [@muratayusuke](https://twitter.com/muratayusuke) ありがとう！  
+
+# 2015/10/10 追記
+2015/10/06(火) に [ISUCON5予選報告会 in GCPUG Tokyo](http://eventdots.jp/event/569858) で isucon5 予選の話を LT してきました。  
+
+<div style="width: 65%">
+  <script async class="speakerdeck-embed" data-id="d19476b7e9584f139cc5db92b7dd37f2" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+</div>
