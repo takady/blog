@@ -4,7 +4,7 @@
   <title><![CDATA[Category: book | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/book/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-10-10T19:31:40+09:00</updated>
+  <updated>2015-10-11T21:51:15+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[情熱プログラマーを読んだ]]></title>
+    <link href="http://takady.github.io/blog/2015/10/11/the-passionate-programmer/"/>
+    <updated>2015-10-11T21:01:24+09:00</updated>
+    <id>http://takady.github.io/blog/2015/10/11/the-passionate-programmer</id>
+    <content type="html"><![CDATA[<p>良い本だった。<br/>
+さすが半谷さんオススメ本。<br/>
+<br /></p>
+
+<ul>
+<li><p>4: 一番の下手くそでいよう</p></li>
+<li><p>13: 師匠を探す<br/>
+手本となる人物の特長10個を重要度で並べて、その10項目それぞれに対して、師匠は自分に10点中何点をつけるか考える。重要度から自分の評価点数を引いた値が高いものから順に、今すぐ始められる具体的なリストをまとめていく。</p></li>
+<li><p>15: 一に練習、ニに練習</p></li>
+<li><p>27: 保守作業の真価を知る<br/>
+測定、改善、測定。そのうちゲームみたいに楽しくなってくるだろう。</p></li>
+<li><p>38: 世界を変えよう<br/>
+職場で自分が目撃した聖戦をリストにまとめる。まるで使命を帯びているように見えた人はいなかっただろうか。</p></li>
+<li><p>39: 業界で名前を売ろう<br/>
+ブログを始めよう。10分か20分で書けそうな話題で。</p></li>
+<li><p>48: 市場に気を配る<br/>
+今後1年間、アルファギークの仲間入りをすべく努力してみよう。あるいは、少なくともアルファギークの友達を一人作ろう。</p></li>
+</ul>
+
+
+<p>意外とキャリア戦略的な要素も入ってた。<br/>
+あと、米国とインドの話と、Jave と .NET の話がちょいちょい出てきたのが印象に残った。<br/>
+たまに読み返すのが良さそう。<br/>
+<br /></p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4274067939&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[WEB+DB PRESS plus の DB 本 3冊を読んで index を学んだ]]></title>

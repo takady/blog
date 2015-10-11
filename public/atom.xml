@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-10-10T19:31:40+09:00</updated>
+  <updated>2015-10-11T21:51:15+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[情熱プログラマーを読んだ]]></title>
+    <link href="http://takady.github.io/blog/2015/10/11/the-passionate-programmer/"/>
+    <updated>2015-10-11T21:01:24+09:00</updated>
+    <id>http://takady.github.io/blog/2015/10/11/the-passionate-programmer</id>
+    <content type="html"><![CDATA[<p>良い本だった。<br/>
+さすが半谷さんオススメ本。<br/>
+<br /></p>
+
+<ul>
+<li><p>4: 一番の下手くそでいよう</p></li>
+<li><p>13: 師匠を探す<br/>
+手本となる人物の特長10個を重要度で並べて、その10項目それぞれに対して、師匠は自分に10点中何点をつけるか考える。重要度から自分の評価点数を引いた値が高いものから順に、今すぐ始められる具体的なリストをまとめていく。</p></li>
+<li><p>15: 一に練習、ニに練習</p></li>
+<li><p>27: 保守作業の真価を知る<br/>
+測定、改善、測定。そのうちゲームみたいに楽しくなってくるだろう。</p></li>
+<li><p>38: 世界を変えよう<br/>
+職場で自分が目撃した聖戦をリストにまとめる。まるで使命を帯びているように見えた人はいなかっただろうか。</p></li>
+<li><p>39: 業界で名前を売ろう<br/>
+ブログを始めよう。10分か20分で書けそうな話題で。</p></li>
+<li><p>48: 市場に気を配る<br/>
+今後1年間、アルファギークの仲間入りをすべく努力してみよう。あるいは、少なくともアルファギークの友達を一人作ろう。</p></li>
+</ul>
+
+
+<p>意外とキャリア戦略的な要素も入ってた。<br/>
+あと、米国とインドの話と、Jave と .NET の話がちょいちょい出てきたのが印象に残った。<br/>
+たまに読み返すのが良さそう。<br/>
+<br /></p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4274067939&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[#isucon 5 予選で惨敗してきました]]></title>
@@ -1736,184 +1771,6 @@ pry(main)&gt; p.first.foobar_flg
 <h1>参考</h1>
 
 <p><a href="http://stackoverflow.com/questions/373731/override-activerecord-attribute-methods">ruby on rails - Override ActiveRecord attribute methods - Stack Overflow</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[turnipを使ってシナリオテストを自動化]]></title>
-    <link href="http://takady.github.io/blog/2014/11/26/turnip/"/>
-    <updated>2014-11-26T19:17:48+09:00</updated>
-    <id>http://takady.github.io/blog/2014/11/26/turnip</id>
-    <content type="html"><![CDATA[<p><a href="https://github.com/jnicklas/turnip">turnip</a>は、シナリオテストを自然言語風のDSLで記述・実行させることができるruby製のツールです。<br/>
-ここでは、wikipediaを開いて「カブ」を検索するというシナリオを例にしてみます。</p>
-
-<h1>事前に</h1>
-
-<p>webページの操作には<a href="https://github.com/jnicklas/capybara">Capybara</a>を使います。<br/>
-今回はrackアプリではないので、HTTP通信を行うためのdriverを別途用意する必要があります。<br/>
-今回は比較的導入が楽でありHeadless(GUIを必要としない)ドライバであるPhantomJSを利用します。<br/>
-OSXであれば、下記でインストールできます。</p>
-
-<pre><code>$ brew install phantomjs
-</code></pre>
-
-<h1>準備</h1>
-
-<p>まずディレクトリを用意しましょう。<br/>
-今回は、railsなどとは組み合わせず、シンプルにturnipだけを使います。</p>
-
-<pre><code>$ mkdir turnip_sample
-$ cd !$
-
-$ bundle init
-</code></pre>
-
-<p>Gemfileに下記を記載し、<code>bundle install</code>を実行します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s2">&quot;https://rubygems.org&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;turnip&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;capybara&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;poltergeist&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>rspecとturnipの設定ファイルを用意します。</p>
-
-<pre><code>$ rspec init
-$ echo '-r turnip/rspec' &gt;&gt; .rspec
-</code></pre>
-
-<p><code>spec/turnip_helper.rb</code>を下記の内容で作成します。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;turnip/capybara&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capybara/poltergeist&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Capybara</span><span class="o">.</span><span class="n">default_driver</span> <span class="o">=</span> <span class="ss">:poltergeist</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;spec/**/*steps.rb&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="nb">load</span> <span class="n">f</span><span class="p">,</span> <span class="kp">true</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>これで、turnipでwebアプリのシナリオテストを書く準備が整いました。</p>
-
-<h1>featureファイル</h1>
-
-<p>featureファイルを下記の内容で作成します。</p>
-
-<p>spec/features/sample.feature</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='Text'><span class='line'>Feature: 検索する
-</span><span class='line'>
-</span><span class='line'>  Scenario: wikipediaでカブを検索する
-</span><span class='line'>    Given wikipediaトップページにアクセスする
-</span><span class='line'>    When wikipediaトップページを表示する
-</span><span class='line'>    Then ウィキペディアへようこそと表示されている
-</span><span class='line'>    And searchにカブを入力する
-</span><span class='line'>    And searchButtonボタンをクリックする
-</span><span class='line'>    Then アブラナ科アブラナ属の越年草と表示されている
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>featureファイルは、いわゆるテストシナリオの定義ファイルです。<br/>
-自然言語で書ける(日本語にも対応している)ため、非エンジニアにとっても理解しやすいと思います。</p>
-
-<h1>stepファイル</h1>
-
-<p>stepファイルを下記の内容で作成します。</p>
-
-<p>spec/steps/sample_step.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">step</span> <span class="s1">&#39;wikipediaトップページにアクセスする&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="no">Capybara</span><span class="o">.</span><span class="n">app_host</span> <span class="o">=</span> <span class="s2">&quot;http://ja.wikipedia.org&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">step</span> <span class="s1">&#39;wikipediaトップページを表示する&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">visit</span> <span class="s1">&#39;/&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">step</span> <span class="sx">%(:textと表示されている)</span> <span class="k">do</span> <span class="o">|</span><span class="n">text</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">step</span> <span class="sx">%(:fieldに:valueを入力する)</span> <span class="k">do</span> <span class="o">|</span><span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">fill_in</span> <span class="n">field</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="n">value</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">step</span> <span class="sx">%(:textボタンをクリックする)</span> <span class="k">do</span> <span class="o">|</span><span class="n">text</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">click_button</span> <span class="n">text</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h1>テスト実行</h1>
-
-<p>無事にテストが通過するはずです。</p>
-
-<pre><code>$ rspec
-JQMIGRATE: Logging is active
-JQMIGRATE: Logging is active
-.
-
-Finished in 5.6 seconds (files took 0.29979 seconds to load)
-1 example, 0 failures
-</code></pre>
-
-<h1>featureファイルとstepファイルの関係</h1>
-
-<p>featureファイルが自然言語風なDSLなのでイメージしにくいかもしれませんが、featureファイルから、stepファイルに定義したメソッド(実際にはstep)を呼び出している、と考えるとわかりやすいかと思います。<br/>
-上記の例ですと、<br/>
-featureファイルの<code>Then ウィキペディアへようこそと表示されている</code>という記述で、stepファイルの、<code>step %(:textと表示されている)</code>のstepが呼ばれます。<br/>
-<code>:text</code>とすることで、そこに入る文字列を動的に指定出来て汎用的になります。</p>
-
-<h1>参考</h1>
-
-<p><a href="http://magazine.rubyist.net/?0042-FromCucumberToTurnip">Rubyist Magazine - エンドツーエンドテストの自動化は Cucumber から Turnip へ</a><br/>
-<a href="http://techracho.bpsinc.jp/hachi8833/2014_06_26/18068">[RSpec][Turnip] 一般的に使えるTurnipステップ集 | TechRacho</a><br/>
-<a href="http://gongo.hatenablog.com/entry/2013/05/29/223218">Turnip について (1) / まずは動かす - Thanks Driven Life</a><br/>
-<a href="http://orangain.hatenablog.com/entry/turnip">Ruby製アプリじゃなくてもTurnipで自動受け入れテストがしたい - orangain flavor</a><br/>
-<a href="http://qiita.com/moriyaman/items/af2a0264adbaaa0d2029">Rails + Turnip + Capybara + poltergeistでBDDテスト - Qiita</a><br/>
-<a href="http://tmpla.info/installation-of-capybara-webkit/">Capybara WebkitをCentOSで使えるようにする方法 – 日本の天ぷら情報</a><br/>
-<a href="http://qiita.com/take/items/779747e0981355e569ad">poltergeist - Capybaraを使う際に知っておきたいこと - Qiita</a></p>
 ]]></content>
   </entry>
   
