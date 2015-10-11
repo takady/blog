@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "情熱プログラマーを読んだ"
+title: "情熱プログラマー を読んだ"
 date: 2015-10-11 21:01:24 +0900
 comments: true
 categories: book
