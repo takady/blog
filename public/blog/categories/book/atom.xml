@@ -4,7 +4,7 @@
   <title><![CDATA[Category: book | Yuichi Takada]]></title>
   <link href="http://takady.github.io/blog/categories/book/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-10-18T20:22:11+09:00</updated>
+  <updated>2015-11-04T23:19:21+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[オブジェクト指向における再利用のためのデザインパターン を読んだ]]></title>
+    <link href="http://takady.github.io/blog/2015/11/04/gof-design-pattern/"/>
+    <updated>2015-11-04T20:45:35+09:00</updated>
+    <id>http://takady.github.io/blog/2015/11/04/gof-design-pattern</id>
+    <content type="html"><![CDATA[<p>いわゆる GoF 本を読んだ。</p>
+
+<p><br /></p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4797311126&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<h1>動機</h1>
+
+<p>こういう設計に関する本は今まで読んだことがなくて、なんとなくそういうことは本で勉強するより実践から身につけるものなんだろうという考えがあったんだけど、チームリーダーからそういう本も読んでみたらいいよと言われたこともあり、どうせ読むなら一番ベタなやつをということでこの本を選んだ。</p>
+
+<h1>感想</h1>
+
+<p>書いてあるパターンには、よく知っているものから、よくわからないものまであった。<br/>
+今までなんとなく書いていた書き方に、oo パターンという名前が付いたような感じ。<br/>
+ただ、違いがいまいち理解出来ないものもあったりして、引き続き勉強しないとなと思った。</p>
+
+<p>役に立ちそうなところとか、良かったと思ったことはこの辺だろうか。</p>
+
+<ul>
+<li><p>共通の設計用語が身につく</p>
+
+<ul>
+<li>oo パターンという名前によって伝えられるので、他の人にも伝えやすい。</li>
+<li>他の開発者とのコミュニケーションの助けになると思う。</li>
+</ul>
+</li>
+<li><p>先人の知恵を借りられる</p>
+
+<ul>
+<li>実践の中でぼんやりと見えてくるであろう良い設計というものが、この本を読むことで学べた。かもしれない。</li>
+</ul>
+</li>
+<li><p>リファクタリングの道すじを考えやすくなる</p>
+
+<ul>
+<li>そもそも最初からデザインパターンを適用して設計すれば、リファクタリングの必要性すら減るのかもしれない。</li>
+<li>既存のコードに対してリファクタリングをする際には、デザインパターンを適用出来ないか検討してみたい。拡張・保守しやすいものにするために。</li>
+<li>もちろんそれを振りかざしてはいけないと思う。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>実際に開発をするときには rails などのフレームワークを使うことがほぼ 100% なわけで、そのフレームワークが自然に求める書き方をするべきだと思っている。そうしないとそのフレームワークを選ぶ意味が無いから。同じように言語自体の特性というものもあるだろう。<br/>
+言語、フレームワークとデザインパターンを上手く使いこなしていきたいし、アイデアの引き出しを増やす意味でもこの本を読んだ意味があったと思う。</p>
+
+<h1>その他</h1>
+
+<p>サンプルが C++ なのがつらくて、Ruby で書いてあるものを探したら <a rel="nofollow" href="http://www.amazon.co.jp/gp/product/4894712857/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4894712857&linkCode=as2&tag=takadayuichi-22">Rubyによるデザインパターン</a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=takadayuichi-22&l=as2&o=9&a=4894712857" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> という本が見つかったが、残念ながら絶版になっていた。<br/>
+web 上の記事としては <a href="http://morizyun.github.io/blog/ruby-design-pattern-matome-mokuzi/">Ruby 2.0.0で学ぶ、14個のデザインパターンを作りました[GoF][Design Pattern] - 酒と泪とRubyとRailsと</a> がかなり参考になった。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[情熱プログラマー を読んだ]]></title>

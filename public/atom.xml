@@ -4,7 +4,7 @@
   <title><![CDATA[Yuichi Takada]]></title>
   <link href="http://takady.github.io/atom.xml" rel="self"/>
   <link href="http://takady.github.io/"/>
-  <updated>2015-10-18T20:22:11+09:00</updated>
+  <updated>2015-11-04T23:19:21+09:00</updated>
   <id>http://takady.github.io/</id>
   <author>
     <name><![CDATA[Yuichi Takada]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[オブジェクト指向における再利用のためのデザインパターン を読んだ]]></title>
+    <link href="http://takady.github.io/blog/2015/11/04/gof-design-pattern/"/>
+    <updated>2015-11-04T20:45:35+09:00</updated>
+    <id>http://takady.github.io/blog/2015/11/04/gof-design-pattern</id>
+    <content type="html"><![CDATA[<p>いわゆる GoF 本を読んだ。</p>
+
+<p><br /></p>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=takadayuichi-22&o=9&p=8&l=as1&asins=4797311126&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0000FF&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<h1>動機</h1>
+
+<p>こういう設計に関する本は今まで読んだことがなくて、なんとなくそういうことは本で勉強するより実践から身につけるものなんだろうという考えがあったんだけど、チームリーダーからそういう本も読んでみたらいいよと言われたこともあり、どうせ読むなら一番ベタなやつをということでこの本を選んだ。</p>
+
+<h1>感想</h1>
+
+<p>書いてあるパターンには、よく知っているものから、よくわからないものまであった。<br/>
+今までなんとなく書いていた書き方に、oo パターンという名前が付いたような感じ。<br/>
+ただ、違いがいまいち理解出来ないものもあったりして、引き続き勉強しないとなと思った。</p>
+
+<p>役に立ちそうなところとか、良かったと思ったことはこの辺だろうか。</p>
+
+<ul>
+<li><p>共通の設計用語が身につく</p>
+
+<ul>
+<li>oo パターンという名前によって伝えられるので、他の人にも伝えやすい。</li>
+<li>他の開発者とのコミュニケーションの助けになると思う。</li>
+</ul>
+</li>
+<li><p>先人の知恵を借りられる</p>
+
+<ul>
+<li>実践の中でぼんやりと見えてくるであろう良い設計というものが、この本を読むことで学べた。かもしれない。</li>
+</ul>
+</li>
+<li><p>リファクタリングの道すじを考えやすくなる</p>
+
+<ul>
+<li>そもそも最初からデザインパターンを適用して設計すれば、リファクタリングの必要性すら減るのかもしれない。</li>
+<li>既存のコードに対してリファクタリングをする際には、デザインパターンを適用出来ないか検討してみたい。拡張・保守しやすいものにするために。</li>
+<li>もちろんそれを振りかざしてはいけないと思う。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>実際に開発をするときには rails などのフレームワークを使うことがほぼ 100% なわけで、そのフレームワークが自然に求める書き方をするべきだと思っている。そうしないとそのフレームワークを選ぶ意味が無いから。同じように言語自体の特性というものもあるだろう。<br/>
+言語、フレームワークとデザインパターンを上手く使いこなしていきたいし、アイデアの引き出しを増やす意味でもこの本を読んだ意味があったと思う。</p>
+
+<h1>その他</h1>
+
+<p>サンプルが C++ なのがつらくて、Ruby で書いてあるものを探したら <a rel="nofollow" href="http://www.amazon.co.jp/gp/product/4894712857/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4894712857&linkCode=as2&tag=takadayuichi-22">Rubyによるデザインパターン</a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=takadayuichi-22&l=as2&o=9&a=4894712857" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /> という本が見つかったが、残念ながら絶版になっていた。<br/>
+web 上の記事としては <a href="http://morizyun.github.io/blog/ruby-design-pattern-matome-mokuzi/">Ruby 2.0.0で学ぶ、14個のデザインパターンを作りました[GoF][Design Pattern] - 酒と泪とRubyとRailsと</a> がかなり参考になった。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[情熱プログラマー を読んだ]]></title>
@@ -1722,59 +1781,6 @@ APIドキュメントとかならコードから機械的に生成するとか�
 <h1>参考</h1>
 
 <p><a href="http://memo.yomukaku.net/entries/127">Rails.env.development?でdevelopment環境かどうかを判定できる - memo.yomukaku.net</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[railsでmysqlのbooleanなカラムをエイリアスで扱う時の注意事]]></title>
-    <link href="http://takady.github.io/blog/2014/12/02/rails-mysql-boolean/"/>
-    <updated>2014-12-02T18:07:11+09:00</updated>
-    <id>http://takady.github.io/blog/2014/12/02/rails-mysql-boolean</id>
-    <content type="html"><![CDATA[<p>rails+mysqlな環境では、booleanで定義したカラムはtinyint(1)で作られ、中身はtrue/falseではなく、0/1が入る。<br/>
-そして、railsアプリケーション上でmysqlのtinyint(1)型データを扱う時、値は自動的にtrue/falseとして扱われる。<br/>
-そこまでは知っていたんだけど、<code>select('foobar_flg as fb_flg')</code>というふうに、カラム名をエイリアスして取り出すと値が0/1なのは知らなかった。</p>
-
-<p>具体的には下記のとおりである。</p>
-
-<pre><code>pry(main)&gt; p = User.select(:foobar_flg)
-  User Load (10.5ms)  SELECT  `users`.`foobar_flg` FROM `users`
-=&gt; [#&lt;User id: nil, foobar_flg: false&gt;]
-pry(main)&gt; p.first.foobar_flg
-=&gt; false
-
-pry(main)&gt; p = User.select('foobar_flg as fb_flg')
-  User Load (5.8ms)  SELECT  foobar_flg as fb_flg FROM `users`
-=&gt; [#&lt;User id: nil&gt;]
-pry(main)&gt; p.first.fb_flg
-=&gt; 0
-</code></pre>
-
-<p>ちなみに、selectメソッドの引数に文字列を指定したから0/1が返ってくるというわけではない。<br/>
-下記のようにエイリアス無しなら、文字列で指定してもtrue/falseに解釈される。</p>
-
-<pre><code>pry(main)&gt; p = User.select('foobar_flg')
-  User Load (10.0ms)  SELECT  `users`.`foobar_flg` FROM `users`
-=&gt; [#&lt;User id: nil, foobar_flg: false&gt;]
-pry(main)&gt; p.first.foobar_flg
-=&gt; false
-</code></pre>
-
-<p>このままだと結構困る。<br/>
-結論としては、<strong>as使わない</strong>で済むならそれが最善手だと思う。<br/>
-が、それが無理なら、例えば下記のようにModelのattributeメソッドをoverrideしちゃうのが良さそう。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">fb_flg</span>
-</span><span class='line'>  <span class="n">read_attribute</span><span class="p">(</span><span class="ss">:fb_flg</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h1>参考</h1>
-
-<p><a href="http://stackoverflow.com/questions/373731/override-activerecord-attribute-methods">ruby on rails - Override ActiveRecord attribute methods - Stack Overflow</a></p>
 ]]></content>
   </entry>
   
