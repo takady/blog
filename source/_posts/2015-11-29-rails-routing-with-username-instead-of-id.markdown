@@ -50,7 +50,7 @@ end
                DELETE /:id(.:format)                     users#destroy
 
 
-# to_param を使わずに routing で param を設定する方法
+# routing で param を設定する方法
 
 User クラスに to_param を定義せずに、 routes.rb で設定する方法。  
 `params[:username]` というふうに渡ってくるので、こちらの方が素直な気がして個人的にはこちらを使いたい。  
