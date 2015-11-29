@@ -13,7 +13,7 @@ rails で普通に scaffold すると id が URL に入って `example.com/users
 # to_param を使う方法
 activerecord に [to_param](http://railsdoc.com/references/to_param) というメソッドがあって、これを使うと URL の :id の部分に id 以外を指定できるようになる。  
 
-## app/models/user.rb
+## user.rb
 ```ruby
 class User < ActiveRecord::Base
   validates_presence_of :username
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-## app/controllers/users_controller.rb
+## users_controller.rb
 ```ruby
 class UsersController < ApplicationController
   def show
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 end
 ```
 
-## config/routes.rb
+## routes.rb
 ```ruby
 Rails.application.routes.draw do
   resources :users, path: '/', only: [:show, :edit, :update, :destroy]
@@ -55,7 +55,7 @@ end
 User クラスに to_param を定義せずに、 routes.rb で設定する方法。  
 `params[:username]` というふうに渡ってくるので、こちらの方が素直な気がして個人的にはこちらを使いたい。  
 
-## app/controllers/users_controller.rb
+## users_controller.rb
 ```ruby
 class UsersController < ApplicationController
   def show
@@ -65,7 +65,7 @@ end
 ```
 
 
-## config/routes.rb
+## routes.rb
 ```ruby
 Rails.application.routes.draw do
   resources :users, param: :username, path: '/', only: [:show, :edit, :update, :destroy]
