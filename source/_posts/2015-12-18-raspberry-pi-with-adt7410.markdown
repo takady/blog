@@ -3,7 +3,7 @@ layout: post
 title: "Raspberry Pi と温度センサーで自宅の温度を可視化"
 date: 2015-12-18 00:46:37 +0900
 comments: true
-categories: 'Raspberry Pi'
+categories: 'RaspberryPi'
 ---
 
 この記事は [Sansan Advent Calendar 2015](http://qiita.com/advent-calendar/2015/sansan) の 18日目の記事です。  
