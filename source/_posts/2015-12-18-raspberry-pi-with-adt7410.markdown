@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Raspberry Pi と温度センサーで自宅の温度を可視化するハック"
+title: "Raspberry Pi と温度センサーで自宅の温度を可視化"
 date: 2015-12-18 00:46:37 +0900
 comments: true
 categories: 'Raspberry Pi'
