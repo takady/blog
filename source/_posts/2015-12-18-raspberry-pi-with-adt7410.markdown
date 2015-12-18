@@ -6,7 +6,8 @@ comments: true
 categories: 'RaspberryPi'
 ---
 
-この記事は [Sansan Advent Calendar 2015](http://qiita.com/advent-calendar/2015/sansan) の 18日目の記事です。  
+___この記事は [Sansan Advent Calendar 2015](http://qiita.com/advent-calendar/2015/sansan) の 18日目の記事です。___  
+<br />
 
 Raspberry Pi と ADT7410 温度センサーで自宅の温度を測り、 [focusligt](https://github.com/focuslight/focuslight) でグラフにした。  
 動機は 2年くらい前に買ったまま放置してた Raspberry Pi に備わっている GPIO のことがずっと気になっていたから。  
