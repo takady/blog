@@ -11,8 +11,7 @@ Android Studio には、Emacs キーバインドの設定が元々用意され�
 普段は Karabinar を使って Emacs キーバインドにしているからそれで良いかとも思ったけど、IDE 側のキーバインドと競合したりしてつらいので Android Studio の時は Karabinar が OFF になるようにして Android Studio のキーバインド設定を使うことにした。  
 
 まず Karabinar の Emacs キーバインドの設定を Android Studio の時は無効になるようにする。  
-[ここ](https://github.com/tekezo/Karabiner/blob/version_10.15.0/src/core/server/Resources/replacementdef.xml#L104-L114) を private.xml で上書いた。  
-こんな感じ。  
+[ここの設定](https://github.com/tekezo/Karabiner/blob/version_10.15.0/src/core/server/Resources/replacementdef.xml#L104-L114) を private.xml でこんな感じに上書きした。  
 
 ```xml
   <replacementdef>
@@ -31,6 +30,3 @@ Android Studio には、Emacs キーバインドの設定が元々用意され�
 
 書き換えたら Karabinar の Preference で Reload XML すれば設定が反映される。  
 次に Android Studio の Preference > Keymap で `Keymaps: Emacs` に設定すれば OK。  
-
-これで Android Studio で Emacs キーバインドでコードが書けるぞぉ！  
-
