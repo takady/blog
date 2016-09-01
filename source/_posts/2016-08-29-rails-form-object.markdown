@@ -74,6 +74,8 @@ class FooDay::RegistrationForm
   end
 
   def valid_days
+    return if errors.any?
+
     foo_days.each do |foo_day|
       next if foo_day.valid?
 
@@ -82,7 +84,7 @@ class FooDay::RegistrationForm
   end
 
   def persist!
-    foo_days.each(&:save)
+    foo_days.each(&:save!)
   end
 end
 ```
@@ -126,14 +128,11 @@ end
           %li= msg
 
     = f.label '日付'
-    = f.text_field :from_date, class: 'datepicker'
+    = f.date_field :from_date
     %span 〜
-    = f.text_field :to_date, class: 'datepicker'
+    = f.date_field :to_date
 
     = f.submit '確定'
-
-:javascript
-  $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 ```
 
 
