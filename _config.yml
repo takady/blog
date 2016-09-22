@@ -72,6 +72,7 @@ github_skip_forks: true
 # Twitter
 twitter_user: takady7
 twitter_tweet_button: true
+twitter_image: /images/profile.jpg
 
 # Google +1
 google_plus_one: false
