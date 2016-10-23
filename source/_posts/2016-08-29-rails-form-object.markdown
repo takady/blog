@@ -48,15 +48,12 @@ class FooDay::RegistrationForm
   validates :user_id, presence: true
   validates :from_date, presence: true, timeliness: {on_or_after: :today, type: :date}
   validates :to_date, allow_blank: true, timeliness: {on_or_after: :from_date, type: :date}
-  validate :valid_days
 
   def save
-    if valid?
-      persist!
-      true
-    else
-      false
-    end
+    return false unless valid?
+
+    persist!
+    true
   end
 
   private
@@ -73,14 +70,18 @@ class FooDay::RegistrationForm
     end
   end
 
-  def valid_days
-    return if errors.any?
+  def valid?
+    return false unless super
 
     foo_days.each do |foo_day|
       next if foo_day.valid?
 
-      errors.add(:base, I18n.t('activemodel.errors.invalid_foo_day', date: foo_day.date, message: foo_day.errors.full_messages.join(', ')))
+      foo_day.errors.full_messages.each do |message|
+        errors.add(:base, I18n.t('activemodel.errors.invalid_foo_day', date: foo_day.date, message: message))
+      end
     end
+
+    return super
   end
 
   def persist!
