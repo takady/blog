@@ -3,7 +3,7 @@ layout: post
 title: "rails のログを fluentd で slack に通知する"
 date: 2017-02-19 18:58:24 +0900
 comments: true
-categories:
+categories: rails
 ---
 
 Ubuntu に td-agent 入れて Slack に rails アプリのエラーを通知するようにしたときの備忘録。  
