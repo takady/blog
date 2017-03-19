@@ -17,28 +17,36 @@ String のメソッドの方がパフォーマンスが良い。
 ```
 $ ruby benchmarker.rb
                            user     system      total        real
-[string]include        0.170000   0.000000   0.170000 (  0.176603)
-[regexp]include        0.330000   0.000000   0.330000 (  0.325735)
-[string]start_with     0.140000   0.000000   0.140000 (  0.143240)
-[regexp]start_with     0.310000   0.000000   0.310000 (  0.309559)
-[string]end_with       0.130000   0.000000   0.130000 (  0.138091)
-[regexp]end_with       0.340000   0.000000   0.340000 (  0.338614)
+[string]include        0.110000   0.000000   0.110000 (  0.116923)
+[regexp]include        0.230000   0.000000   0.230000 (  0.229775)
+[string]start_with     0.090000   0.010000   0.100000 (  0.087478)
+[regexp]start_with     0.230000   0.000000   0.230000 (  0.234467)
+[string]end_with       0.090000   0.000000   0.090000 (  0.091226)
+[regexp]end_with       0.250000   0.000000   0.250000 (  0.249781)
 ```
 
-コード。
+コード。  
+生成コストが入らないように定数で宣言したものでベンチマーク取った。  
 
 ```ruby
 require 'benchmark'
 
 n = 1_000_000
 
+TEST = 'test'.freeze
+TE = 'te'.freeze
+ST = 'st'.freeze
+REGEXP_TEST = /test/.freeze
+REGEXP_TE = /\Ate/.freeze
+REGEXP_ST = /st\z/.freeze
+
 Benchmark.bm(20) do |b|
-  b.report('[string]include') { (1..n).each { 'test'.include?('es') } }
-  b.report('[regexp]include') { (1..n).each { /es/ === 'test' } }
-  b.report('[string]start_with') { (1..n).each { 'test'.start_with?('te') } }
-  b.report('[regexp]start_with') { (1..n).each { /\Ate/ === 'test' } }
-  b.report('[string]end_with') { (1..n).each { 'test'.end_with?('st') } }
-  b.report('[regexp]end_with') { (1..n).each { /st\z/ === 'test' } }
+  b.report('[string]include') { (1..n).each { TEST.include?(TE) } }
+  b.report('[regexp]include') { (1..n).each { REGEXP_TEST === TEST } }
+  b.report('[string]start_with') { (1..n).each { TEST.start_with?(TE) } }
+  b.report('[regexp]start_with') { (1..n).each { REGEXP_TE === TEST } }
+  b.report('[string]end_with') { (1..n).each { TEST.end_with?(ST) } }
+  b.report('[regexp]end_with') { (1..n).each { REGEXP_ST === TEST } }
 end
 ```
 
