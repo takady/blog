@@ -1,0 +1,130 @@
+---
+categories: ruby
+comments: true
+date: 2014-11-26T19:17:48Z
+title: turnipを使ってシナリオテストを自動化
+url: /blog/2014/11/26/turnip/
+---
+
+[turnip](https://github.com/jnicklas/turnip)は、シナリオテストを自然言語風のDSLで記述・実行させることができるruby製のツールです。  
+ここでは、wikipediaを開いて「カブ」を検索するというシナリオを例にしてみます。
+
+# 事前に
+webページの操作には[Capybara](https://github.com/jnicklas/capybara)を使います。  
+今回はrackアプリではないので、HTTP通信を行うためのdriverを別途用意する必要があります。  
+今回は比較的導入が楽でありHeadless(GUIを必要としない)ドライバであるPhantomJSを利用します。  
+OSXであれば、下記でインストールできます。
+
+    $ brew install phantomjs
+
+# 準備
+まずディレクトリを用意しましょう。  
+今回は、railsなどとは組み合わせず、シンプルにturnipだけを使います。
+
+    $ mkdir turnip_sample
+    $ cd !$
+
+    $ bundle init
+
+
+Gemfileに下記を記載し、`bundle install`を実行します。
+
+```ruby
+source "https://rubygems.org"
+
+gem 'turnip'
+gem 'capybara'
+gem 'poltergeist'
+```
+
+rspecとturnipの設定ファイルを用意します。
+
+    $ rspec init
+    $ echo '-r turnip/rspec' >> .rspec
+
+`spec/turnip_helper.rb`を下記の内容で作成します。
+```ruby
+require 'turnip/capybara'
+require 'capybara/poltergeist'
+
+Capybara.default_driver = :poltergeist
+
+Dir.glob("spec/**/*steps.rb") { |f| load f, true }
+```
+
+これで、turnipでwebアプリのシナリオテストを書く準備が整いました。
+
+# featureファイル
+featureファイルを下記の内容で作成します。
+
+spec/features/sample.feature
+
+```Text
+Feature: 検索する
+
+  Scenario: wikipediaでカブを検索する
+    Given wikipediaトップページにアクセスする
+    When wikipediaトップページを表示する
+    Then ウィキペディアへようこそと表示されている
+    And searchにカブを入力する
+    And searchButtonボタンをクリックする
+    Then アブラナ科アブラナ属の越年草と表示されている
+```
+
+featureファイルは、いわゆるテストシナリオの定義ファイルです。  
+自然言語で書ける(日本語にも対応している)ため、非エンジニアにとっても理解しやすいと思います。
+
+# stepファイル
+stepファイルを下記の内容で作成します。
+
+spec/steps/sample_step.rb
+
+```ruby
+step 'wikipediaトップページにアクセスする' do
+  Capybara.app_host = "http://ja.wikipedia.org"
+end
+
+step 'wikipediaトップページを表示する' do
+  visit '/'
+end
+
+step %(:textと表示されている) do |text|
+  expect(page).to have_content(text)
+end
+
+step %(:fieldに:valueを入力する) do |field, value|
+  fill_in field, with: value
+end
+
+step %(:textボタンをクリックする) do |text|
+  click_button text
+end
+```
+
+# テスト実行
+無事にテストが通過するはずです。
+
+    $ rspec
+    JQMIGRATE: Logging is active
+    JQMIGRATE: Logging is active
+    .
+    
+    Finished in 5.6 seconds (files took 0.29979 seconds to load)
+    1 example, 0 failures
+
+
+# featureファイルとstepファイルの関係
+featureファイルが自然言語風なDSLなのでイメージしにくいかもしれませんが、featureファイルから、stepファイルに定義したメソッド(実際にはstep)を呼び出している、と考えるとわかりやすいかと思います。  
+上記の例ですと、  
+featureファイルの`Then ウィキペディアへようこそと表示されている`という記述で、stepファイルの、`step %(:textと表示されている)`のstepが呼ばれます。  
+`:text`とすることで、そこに入る文字列を動的に指定出来て汎用的になります。
+
+
+# 参考
+[Rubyist Magazine - エンドツーエンドテストの自動化は Cucumber から Turnip へ](http://magazine.rubyist.net/?0042-FromCucumberToTurnip)  
+[[RSpec][Turnip] 一般的に使えるTurnipステップ集 | TechRacho](http://techracho.bpsinc.jp/hachi8833/2014_06_26/18068)  
+[Turnip について (1) / まずは動かす - Thanks Driven Life](http://gongo.hatenablog.com/entry/2013/05/29/223218)  
+[Ruby製アプリじゃなくてもTurnipで自動受け入れテストがしたい - orangain flavor](http://orangain.hatenablog.com/entry/turnip)  
+[Rails + Turnip + Capybara + poltergeistでBDDテスト - Qiita](http://qiita.com/moriyaman/items/af2a0264adbaaa0d2029)  
+[Capybara WebkitをCentOSで使えるようにする方法 – 日本の天ぷら情報](http://tmpla.info/installation-of-capybara-webkit/)  
+[poltergeist - Capybaraを使う際に知っておきたいこと - Qiita](http://qiita.com/take/items/779747e0981355e569ad)  

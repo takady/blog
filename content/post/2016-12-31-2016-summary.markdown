@@ -1,0 +1,66 @@
+---
+categories: null
+comments: true
+date: 2016-12-31T13:10:16Z
+title: 2016年まとめ
+url: /blog/2016/12/31/2016-summary/
+---
+
+自分用今年のまとめ。
+
+## 英語
+自分の中で英語をやる機運が高まってきたので勉強始めた。
+
+- 夏あたりからオンライン英会話を週1,2回ペースでやって、オンサイトの英会話に週1ペースで行ってる。
+  - 自然言語の習得は毎日継続するのが良いらしいので毎日やるような習慣にしたい。
+- あとはamazonで買った[英語圏の小学生用のテキスト](https://www.amazon.co.jp/gp/product/0521734770/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=0521734770&linkCode=as2&tag=takadayuichi-22)をやってる。
+
+## 発表
+- 7月の頭に1回だけ、その時会社でやってたログ収集の基盤とre:dashについて社外でLTした。
+  - もっと発表していく予定だったけど、その後業務でやることが変わったりしてその余裕とかネタが取れなかった。
+
+## 業務
+- 前半は去年の続きをやっていた感じだった。
+- 後半は KPI 基盤のリプレースのプロジェクトのメインメンバーとして進めて、そのあと方針変更により別プロジェクトのメンバーになった。
+- 12月には事業の開発チームに異動することとなった。
+  - 動きがあった方が学びは多いと思うが、やってる途中で止めないといけない事もあったりするのでそこの割り切りが必要になった。
+
+## 読書
+5月に Kindle Paperwhite 買ったらめっちゃ読書体験が良くなって以前より本が読みやすくなった。  
+会社の技術書購入支援制度があるのもあって、読む本には困らなかった。  
+
+- [エリック・エヴァンスのドメイン駆動設計 (IT Architects’Archive ソフトウェア開発の実践) ](https://www.amazon.co.jp/gp/product/4798121967/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4798121967&linkCode=as2&tag=takadayuichi-22)
+- [10年戦えるデータ分析入門 SQLを武器にデータ活用時代を生き抜く (Informatics &IDEA) ](https://www.amazon.co.jp/gp/product/4797376279/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4797376279&linkCode=as2&tag=takadayuichi-22)
+- [オブジェクト指向でなぜつくるのか 第2版](https://www.amazon.co.jp/gp/product/4822284654/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4822284654&linkCode=as2&tag=takadayuichi-22)
+- [ピープルウエア　第3版](https://www.amazon.co.jp/gp/product/B00I96CJWO/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B00I96CJWO&linkCode=as2&tag=takadayuichi-22)
+- [SOFT SKILLS　ソフトウェア開発者の人生マニュアル](https://www.amazon.co.jp/gp/product/B01GDS0994/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B01GDS0994&linkCode=as2&tag=takadayuichi-22)
+- [日本人の働き方の9割がヤバい件について](https://www.amazon.co.jp/gp/product/B015DRJF8W/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B015DRJF8W&linkCode=as2&tag=takadayuichi-22)
+- [10年後の仕事のカタチ10のヒント](https://www.amazon.co.jp/gp/product/B00HOTLXKQ/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B00HOTLXKQ&linkCode=as2&tag=takadayuichi-22)
+- [どんどん話すための瞬間英作文トレーニング](https://www.amazon.co.jp/gp/product/4860641345/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4860641345&linkCode=as2&tag=takadayuichi-22)
+- [エクストリームプログラミング](https://www.amazon.co.jp/gp/product/4274217620/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4274217620&linkCode=as2&tag=takadayuichi-22)
+- [Android実践プログラミング 現場で生まれた設計パターン](https://www.amazon.co.jp/gp/product/B01D2UKPFE/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B01D2UKPFE&linkCode=as2&tag=takadayuichi-22)
+- [実践ドメイン駆動設計 (Object Oriented SELECTION) ](https://www.amazon.co.jp/gp/product/479813161X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=479813161X&linkCode=as2&tag=takadayuichi-22)
+- [オブジェクト指向設計実践ガイド ～Rubyでわかる 進化しつづける柔軟なアプリケーションの育て方](https://www.amazon.co.jp/gp/product/B01L8SEVYI/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B01L8SEVYI&linkCode=as2&tag=takadayuichi-22)
+- [メタプログラミングRuby 第2版](https://www.amazon.co.jp/gp/product/4873117437/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117437&linkCode=as2&tag=takadayuichi-22)
+- [Everyday Rails - RSpecによるRailsテスト入門](https://leanpub.com/everydayrailsrspec-jp)
+- [火花](https://www.amazon.co.jp/gp/product/4163902309/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4163902309&linkCode=as2&tag=takadayuichi-22)
+
+## isucon
+- 今年も[予選落ち](http://blog.takady.net/blog/2016/09/21/isucon6-qualifier/)した。来年こそなんとかしたい。
+- 日頃から web アプリケーションに関する技術的な知見を積み重ねていきたい。
+
+## 個人的な技術的興味
+- Android アプリ開発について勉強しようと思って、アプリを作ってみたりしてた。
+  - 軽くしかできてないのでもうちょっと深くやりたい。
+- js というか React を触ってた。
+
+## その他
+- メインのエディタを sublime text から RubyMine に完全に移行した。
+- プライベートのメールクライアントを gmail から inbox に移行した。
+- シンガポール、オランダ、ドイツに旅行に行った。
+  - 楽しかったからまた海外旅行行きたい。
+
+## まとめ
+年初にやってたこととかについては「これも今年だったか」と思うくらいに過去な感じがする。  
+来年の前半はアルゴリズムとデータ構造とかそういう基本的なところをちゃんと学び直したい。  
+あと英語が面白くなってきたから引き続きやっていこう。  

@@ -1,5 +1,1 @@
-public
-_deploy
-.sass-cache
-.themes
-.pygments-cache/
+public/
