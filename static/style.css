@@ -1,0 +1,15 @@
+.global-header {
+  height: 120px;
+}
+
+main.container {
+  margin-top: 30px;
+}
+
+article header h2 {
+  font-size: 25px;
+}
+
+h1.text-primary {
+  font-size: 40px;
+}

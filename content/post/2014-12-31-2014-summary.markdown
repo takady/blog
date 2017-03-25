@@ -1,0 +1,103 @@
+---
+categories: null
+comments: true
+date: 2014-12-31T19:26:56Z
+title: 2014年まとめ
+url: /blog/2014/12/31/2014-summary/
+---
+
+今年はコードを書く楽しさを知った１年だった  
+去年までのコードをほとんど書いてなかった時間が悔やまれるけど、来年も前向きにいきたい  
+
+# よかったこと
+- rubygems.orgに4つgemを出した
+  - [https://rubygems.org/profiles/takady](https://rubygems.org/profiles/takady)
+- テストコード書くようになった
+- ruby/railsを業務で使う機会を得られた
+- 会社のCI環境を整えた
+- 勉強会に参加するようになった(YAPC::Asia、RubyKaigi、RubyWorld Conference、他)
+- Ruby Advent Calenderに当日飛び入り参加した
+  - [rubyのloggerをnewした後にログファイルを削除するとどうなるのか | Yuichi Takada](http://takady.github.io/blog/2014/12/07/file-safe-logger/)
+
+# わるかったこと
+- 勉強会は、聞く側としてしか参加できなかった
+
+## 1月
+- Hadoopでデータ処理するチームから、webアプリを書けるチームに移った
+- 会社の都合でここから3ヶ月間仙台での生活が始まった
+- [rebuild.fm](http://rebuild.fm/)を発見してハマった、毎日聞いた、今も何回も繰り返し聞いてる
+
+## 2月
+- 1年かけて、何か一つ言語をまともに書けるようになりたいと思い、仙台の本屋で平積みされていたパーフェクトRubyという本を買った
+- [あるブログエントリ](http://tagomoris.hatenablog.com/entry/2014/02/25/091607)を読んで、[githubアカウント](https://github.com/takady)を作り直した
+
+## 3月
+- 業務で始めてrubyでスクリプト書いた
+- macbook air買った
+- jenkinsをチームに導入した
+- 認定スクラムマスターという研修を受けて認定を取得した
+
+## 4月
+- 仙台から東京に戻った
+- [大江戸Ruby会議04](http://regional.rubykaigi.org/oedo04/)に参加して、みんな楽しそうと思った
+- 良い目標が思いついた
+    <blockquote class="twitter-tweet" lang="ja"><p>今年の目標は、たくさん失敗することだ … <a href="http://t.co/Cy4xjffowl">http://t.co/Cy4xjffowl</a></p>&mdash; takady (@takady7) <a href="https://twitter.com/takady7/status/458937108955004928">2014, 4月 23</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+## 5月
+- いくつか勉強会行った
+  - [【Railsセミナー】Why choose Ruby on Rails ? に行ってきた](http://takady7.tumblr.com/post/85298039456/rails-why-choose-ruby-on-rails)
+  - [GREE Tech Talk #05 : 並行/並列プログラミング](http://takady7.tumblr.com/post/85727186336/gree-tech-talk-05)
+  - [Heroku Meetup #12 に行ってきた](http://takady7.tumblr.com/post/86500885716/heroku-meetup-12)
+
+## 6月
+- 27歳になっちゃった
+- 始めてrubygemsにgemを出した
+  - [apache logをパースするgemを作ってrubygems.orgに公開してみた - Qiita](http://qiita.com/takady/items/a4858c09b56e2b185814)
+- hipchat、hubotをチームに導入した
+
+## 7月
+- 会社のでかめのプロジェクトのリリースが無事終わった
+- 組織の色々があった
+    <blockquote class="twitter-tweet" lang="ja"><p>やっぱ言いたいこととか疑問とかはちゃんとぶつけた方がいいな&#10;それで相入れなくても、かげで文句言ってるよりもいいと思う</p>&mdash; takady (@takady7) <a href="https://twitter.com/takady7/status/486426378556813313">2014, 7月 8</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+- 勉強会行った
+  - [API Meetup Tokyo #1](http://takady7.tumblr.com/post/91457205306/api-meetup-tokyo-1)
+  - [第2回「Ruby on Rails チュートリアル」ハンズオンセミナー](http://takady7.tumblr.com/post/92888711266/2-ruby-on-rails)
+
+## 8月
+- 自分のgemを更新したり、新しく出したりした
+- テストコードの良さを身を持って実感し始めた
+- 有給取ってYAPC::Asia行って、最高に楽しかった
+  - [YAPC::Asia Tokyo 2014](http://takady7.tumblr.com/post/96242359616/yapc-asia-tokyo-2014)
+
+## 9月
+- 有給取ってrubyKaigiに行った
+  - [RubyKaigi2014に行ってきた](http://takady7.tumblr.com/post/98302265911/rubykaigi2014)
+- terminal環境を整えて、emacsを使いはじめる
+  - [zsh、ghq、peco、tmuxなどについて](http://takady7.tumblr.com/post/98303277811/zsh-ghq-peco-tmux)
+- 社内rubyコミュニティの集まりに顔を出してみた
+  - [meetup #1 20140930 · Issue #1 · Aoyokorb/Aoyoko.rb...](http://takady7.tumblr.com/post/98803250651/meetup-1-20140930-issue-1-aoyokorb-aoyoko-rb)
+
+## 10月
+- 会社のrails案件でコードたくさん書いた
+
+## 11月
+- 会社のrails案件でコードたくさん書いた
+- 会社のPCもmacにしてもらえた
+- RubyWorld Conferenceで初めて島根に行った
+- blogをtumblrからoctopress on github pagesに変えた
+- Goに興味を持ち始める
+- Go Conferenceにも行った
+
+## 12月
+- 会社のrails案件でコードたくさん書いた
+- 12/07のRuby Advent Calenderが当日に急遽空いた事に気づいたので、僭越ながら書かせてもらった
+  - [rubyのloggerをnewした後にログファイルを削除するとどうなるのか | Yuichi Takada](http://takady.github.io/blog/2014/12/07/file-safe-logger/)
+- もっと一次情報を得たいと思い、Feedlyで海外を含めたblogポストをチェックするようになった
+
+# 来年について
+- LTするとか、今年よりもっとアウトプットしたい
+- 英語の記事も読んで情報をもっと早く得る
+- 毎週何か作って出すくらいの勢いでOSS活動する
+- githubで100スターくらい取れるようなものを作る
