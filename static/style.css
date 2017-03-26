@@ -7,9 +7,17 @@ main.container {
 }
 
 article header h2 {
-  font-size: 25px;
+  font-size: 23px;
+}
+
+article h1 {
+  font-size: 35px;
+}
+
+article h2 {
+  font-size: 32px;
 }
 
 h1.text-primary {
-  font-size: 40px;
+  font-size: 30px;
 }
