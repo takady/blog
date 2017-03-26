@@ -24,6 +24,11 @@
   {{ else }}
   <meta property="og:type" content="website" />
   {{ end }}
+  <meta name="og:description" content="{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:url" content="{{ .Permalink }}" />
+  <meta name="twitter:site" content="@{{ .Site.Params.twitter }}" />
+  <meta name="twitter:creator" content="@{{ .Site.Params.twitter }}" />
 
   <title>
     {{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}

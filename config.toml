@@ -28,3 +28,4 @@ theme = "vienna"
     # Short subtitle/tagline. This is displayed in the header.
     #subtitle = "Ruby, Rails and something about tech."
     themecolor = "#333" # Defines the tab color in Chrome for Android.
+    description = "This is my tech blog."
