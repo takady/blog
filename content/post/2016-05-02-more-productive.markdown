@@ -1,9 +1,9 @@
 ---
 categories: null
 comments: true
-date: 2016-05-01T01:10:20Z
+date: 2016-05-02T01:10:20Z
 title: 自分の開発スピードを上げるには
-url: /blog/2016/05/01/more-productive/
+url: /blog/2016/05/02/more-productive/
 ---
 
 新しい機能なりサービスを作った後に振り返ってみると、もっと上手くやれた気がするなーって思う。  
