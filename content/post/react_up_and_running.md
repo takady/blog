@@ -7,7 +7,7 @@ title = "Reactビギナーズガイド を読んだ"
 +++
 
 <a target="_blank"  href="https://www.amazon.co.jp/gp/product/4873117887/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4873117887&linkCode=as2&tag=takadayuichi-22&linkId=7f4e6601420eec8bc27438573ff786fa"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4873117887&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=takadayuichi-22" >
-<p>Reactビギナーズガイド</p>
+<p>Reactビギナーズガイド ―コンポーネントベースのフロントエンド開発入門</p>
 </a>
 
 React はプライベートで書いているけども、一度ちゃんと基礎を抑えておきたいので読んだ。  
