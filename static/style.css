@@ -21,3 +21,8 @@ article h2 {
 h1.text-primary {
   font-size: 30px;
 }
+
+blockquote {
+  font-size: 17px;
+  color: gray;
+}
