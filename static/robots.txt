@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://blog.takady.net/sitemap.xml
+Sitemap: https://blog.takady.net/sitemap.xml
