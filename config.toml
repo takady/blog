@@ -1,4 +1,4 @@
-baseurl = "http://blog.takady.net/"
+baseurl = "https://blog.takady.net/"
 languageCode = "ja"
 hasCJKLanguage = "true"
 title = "Yuichi Takada"
